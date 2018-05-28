@@ -40,10 +40,9 @@
                                     </span>
                                 </a>
                             </li>                            
-                        </ul>                                                                                                                                                                         
+                        </ul>                                                                                                       
                     </div>
                 </div>
-
             </div>
             <div class="panel-body">
 
@@ -107,7 +106,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-sm-6"> 
+                            <div class="col-sm-6 mb"> 
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.end.$invalid && !EventForm.end.$pristine }">
                                     <label for="end" class="modal-label">End </label>
                                     <input type="text" ng-model="end" name="end" class="new-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
@@ -143,14 +142,14 @@
                     <form id="EditEventForm" name="EditEventForm"  novalidate>
                         <div class="modal-body">
                            <div class="col-md-12">
-                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.title.$invalid && !EditEventForm.title.$pristine }">
-                                <label for="title" class="modal-label">Title </label>
-                                <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,24}$/i" required>
-                                <p ng-show="EditEventForm.title.$dirty && EditEventForm.title.$error.required" class="help-block">Title is required</p>
-                                <p ng-show="EditEventForm.title.$error.minlength" class="help-block">Title is too short.</p>
-                                <p ng-show="EditEventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
-                                <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error title</p>                                     
-                            </div>
+                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.title.$invalid && !EditEventForm.title.$pristine }">
+                                    <label for="title" class="modal-label">Title </label>
+                                    <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,24}$/i" required>
+                                    <p ng-show="EditEventForm.title.$dirty && EditEventForm.title.$error.required" class="help-block">Title is required</p>
+                                    <p ng-show="EditEventForm.title.$error.minlength" class="help-block">Title is too short.</p>
+                                    <p ng-show="EditEventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
+                                    <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error title</p>                                     
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EditEventForm.description.$invalid && !EditEventForm.description.$pristine }">
@@ -162,31 +161,31 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                            <div class="form-group" ng-class="{ 'has-error' : selectError }">
-                                <label for="tag" class="modal-label">Tag </label>
-                                <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
-                                    <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
-                                </select>
-                                <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
-                            </div>
-                            </div>
-                            <div class="col-sm-6">
-                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.start.$invalid && !EditEventForm.start.$pristine }">
-                                <label for="start" class="modal-label">Start </label>
-                                <input type="text" ng-model="start" name="start" class="edit-datepicker form-control" id="start" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/" required>
-                                <p ng-show="EditEventForm.start.$dirty && EditEventForm.start.$error.required" class="help-block">Start Date is required</p>
-                                <p ng-show="EditEventForm.start.$error.pattern" class="help-block">patter error edit modal start date</p>           
-                            </div> 
+                                <div class="form-group" ng-class="{ 'has-error' : selectError }">
+                                    <label for="tag" class="modal-label">Tag </label>
+                                    <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
+                                        <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
+                                    </select>
+                                    <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
+                                </div>
                             </div>
                             <div class="col-sm-6">
-                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
-                                <label for="end" class="modal-label">End </label>
-                                <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
-                                <p ng-show="EditEventForm.end.$dirty && EditEventForm.end.$error.required" class="help-block">End Date is required</p>    
-                                <p ng-show="EditEventForm.end.$error.date" class="help-block">Title is too short.</p>
-                                <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p>
-                                <input type="hidden" ng-model="id" name="id" class="form-control" id="id">      
+                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.start.$invalid && !EditEventForm.start.$pristine }">
+                                    <label for="start" class="modal-label">Start </label>
+                                    <input type="text" ng-model="start" name="start" class="edit-datepicker form-control" id="start" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/" required>
+                                    <p ng-show="EditEventForm.start.$dirty && EditEventForm.start.$error.required" class="help-block">Start Date is required</p>
+                                    <p ng-show="EditEventForm.start.$error.pattern" class="help-block">patter error edit modal start date</p>           
+                                </div> 
                             </div>
+                            <div class="col-sm-6 mb">
+                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
+                                    <label for="end" class="modal-label">End </label>
+                                    <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
+                                    <p ng-show="EditEventForm.end.$dirty && EditEventForm.end.$error.required" class="help-block">End Date is required</p>    
+                                    <p ng-show="EditEventForm.end.$error.date" class="help-block">Title is too short.</p>
+                                    <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p>
+                                    <input type="hidden" ng-model="id" name="id" class="form-control" id="id">      
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -216,15 +215,12 @@
                     </div>                    
                     <form>
                         <div class="modal-body">
-
                             <ul class="nav nav-tabs">
                                 <li class="active"><a showtab="" href="#default">About</a></li>                               
                                 <li><a showtab="" href="#license">License</a></li>
                                 <li><a showtab="" href="#credits">Credits</a></li>
                             </ul>
-
                             <div class="tab-content">
-
                                 <div class="tab-pane fade in active" id="default">
                                     <br>
                                     <p>Version 1.0.1</p>
@@ -232,13 +228,11 @@
                                     <p>Event Manager is Developed by R.Nadeera Sampath</p>
                                     <p>Got any feedback? Found a bug? Let us know : johndoe@gmail.com</p>
                                 </div>
-
                                 <div class="tab-pane fade" id="license">
                                     <br>
                                     <p>This Computer program is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this program, or any part of it, may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.</p>
                                     <p>Copyright &copy; 2018 All right reserved.</p>
                                 </div>
-
                                 <div class="tab-pane fade" id="credits">
                                     <br>
                                     <p>A number of MIT, LGPL and other copyrighted libraries and resources have been used in this program. These copyrights remain the property of their owners.</p>
@@ -253,10 +247,7 @@
                                         <li>angular</li>
                                     </ul>
                                 </div>   
-
                             </div>
-
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Close</button>
@@ -265,7 +256,6 @@
                 </div>
             </div>
         </div>            
-
         <script>window.$ = window.jQuery = require('./js/jquery.js');</script>
         <script src="js/bootstrap.js"></script>
         <script src="js/app.js"></script>
@@ -280,5 +270,4 @@
         <script src="helpers/ucwords.js"></script>
         <script src="helpers/time.js"></script>
     </body>
-
 </html>

@@ -1182,3 +1182,7 @@ body.modal {
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
     color: #fff;
 }
+
+.mb{
+  margin-bottom: 20px;   
+}
