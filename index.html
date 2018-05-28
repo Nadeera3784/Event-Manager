@@ -66,24 +66,26 @@
                     </div>                    
                     <form id="EventForm" name="EventForm"  novalidate>
                         <div class="modal-body">
-                            <div class="col-md-12">
+                            <div class="col-sm-12">
                                 <button type="reset" class="btn btn-info-outline btn-xs pull-right" data-toggle="tooltip" data-placement="left" title="Reset The Whole Form"><i class="fa fa-refresh"></i> Reset</button>
                                 
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.title.$invalid && !EventForm.title.$pristine }">
                                     <label for="title" class="modal-label">Title </label>
-                                    <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8"
-                                    ng-pattern="/^[a-z][a-z0-9_\.>]{0,24}$/i" required>
+                                    <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12"
+                                    ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,24}$/i" required>
                                     <p ng-show="EventForm.title.$dirty && EventForm.title.$error.required" class="help-block">Title is required</p>
                                     <p ng-show="EventForm.title.$error.minlength" class="help-block">Title is too short.</p>
                                     <p ng-show="EventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
                                     <p ng-show="EventForm.title.$error.pattern" class="help-block">pattern error title</p>                 
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-sm-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.description.$invalid && !EventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" required></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,100}$/i" required ></textarea>
                                     <p ng-show="EventForm.description.$dirty && EventForm.description.$error.required" class="help-block">Description is required</p>
+                                    <p ng-show="EventForm.description.$error.minlength" class="help-block">description is too short.</p>
+                                    <p ng-show="EventForm.description.$error.pattern" class="help-block">patter error description</p>   
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -99,8 +101,10 @@
                             <div class="col-sm-6">
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.start.$invalid && !EventForm.start.$pristine }">
                                     <label for="start" class="modal-label">Start </label>
-                                    <input type="text" ng-model="start" name="start" class="new-datepicker form-control" id="start" required>
+                                    <input type="text" ng-model="start" name="start" class="new-datepicker form-control" id="start"  ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/" required>
                                     <p ng-show="EventForm.start.$dirty && EventForm.start.$error.required" class="help-block">Start Date is required</p>
+                                    <p ng-show="EventForm.start.$error.pattern" class="help-block">patter error end date</p>   
+
                                 </div>
                             </div>
                             <div class="col-sm-6"> 
@@ -141,18 +145,20 @@
                            <div class="col-md-12">
                             <div class="form-group" ng-class="{ 'has-error' : EditEventForm.title.$invalid && !EditEventForm.title.$pristine }">
                                 <label for="title" class="modal-label">Title </label>
-                                <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8" ng-pattern="/^[a-z][a-z0-9_\.>]{0,24}$/i" required>
+                                <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,24}$/i" required>
                                 <p ng-show="EditEventForm.title.$dirty && EditEventForm.title.$error.required" class="help-block">Title is required</p>
                                 <p ng-show="EditEventForm.title.$error.minlength" class="help-block">Title is too short.</p>
                                 <p ng-show="EditEventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
-                                <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error edit modal title</p>                                     
+                                <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error title</p>                                     
                             </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EditEventForm.description.$invalid && !EditEventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" required></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,100}$/i" required></textarea>
                                     <p ng-show="EditEventForm.description.$dirty && EditEventForm.description.$error.required" class="help-block">Description is required</p>
+                                    <p ng-show="EditEventForm.description.$error.minlength" class="help-block">Description is too short.</p>
+                                    <p ng-show="EditEventForm.description.$error.pattern" class="help-block">pattern error description</p>          
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -175,10 +181,10 @@
                             <div class="col-sm-6">
                             <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
                                 <label for="end" class="modal-label">End </label>
-                                <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end"  required> 
+                                <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
                                 <p ng-show="EditEventForm.end.$dirty && EditEventForm.end.$error.required" class="help-block">End Date is required</p>    
                                 <p ng-show="EditEventForm.end.$error.date" class="help-block">Title is too short.</p>
-                                <!--                                <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p> ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"-->
+                                <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p>
                                 <input type="hidden" ng-model="id" name="id" class="form-control" id="id">      
                             </div>
                             </div>

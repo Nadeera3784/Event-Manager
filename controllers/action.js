@@ -70,7 +70,7 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start     = angular.element('#edit-modal #start').val();
         let end       = angular.element('#edit-modal #end').val();
         
-        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, start: start, end: end, className: className}}).then(function (httpResponse) {
+        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
                 new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
@@ -184,8 +184,8 @@ app.controller('action', function($scope, $rootScope, $http) {
         id =  event.id;
         title = event.title;
         className = event.className;
-        
-        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, start: start, end: end, className: className}}).then(function (httpResponse) {
+        description = event.description;
+        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
                 new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);

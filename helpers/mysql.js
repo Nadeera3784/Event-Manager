@@ -39,7 +39,7 @@ let MysqlHelpers = (function () {
     MysqlHelpers.prototype.addEvents = function (connection, event) {
         return new Promise(function(resolve, reject) {
             if(!connection) reject();
-            connection.query('INSERT INTO `events` (title,description,start, end, className) VALUES (?, ?, ?, ?)' ,[event.title, event.description, event.start, event.end, event.className],  function(error, results, fields){
+            connection.query('INSERT INTO `events` (title, description, start, end, className) VALUES (?, ?, ?, ?, ?)' ,[event.title, event.description, event.start, event.end, event.className],  function(error, results, fields){
                 if (error) reject(error);
                 resolve(results);
             });
@@ -49,7 +49,7 @@ let MysqlHelpers = (function () {
     MysqlHelpers.prototype.editEvent = function (connection, event) {
         return new Promise(function(resolve, reject) {
             if(!connection) reject();
-            connection.query('UPDATE `events` SET title = ?, start = ?, end = ?, className = ? WHERE id = ? ' ,[event.title, event.description, event.start, event.end, event.className, event.id], function(error, rows, fields){
+            connection.query('UPDATE `events` SET title = ?, description= ?, start = ?, end = ?, className = ? WHERE id = ? ' ,[event.title, event.description, event.start, event.end, event.className, event.id], function(error, rows, fields){
                 if (error) reject(error);
                 resolve(rows);
             });
