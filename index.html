@@ -138,7 +138,7 @@
                     </div>                    
                     <form id="EditEventForm" name="EditEventForm"  novalidate>
                         <div class="modal-body">
-
+                           <div class="col-md-12">
                             <div class="form-group" ng-class="{ 'has-error' : EditEventForm.title.$invalid && !EditEventForm.title.$pristine }">
                                 <label for="title" class="modal-label">Title </label>
                                 <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8" ng-pattern="/^[a-z][a-z0-9_\.>]{0,24}$/i" required>
@@ -147,6 +147,15 @@
                                 <p ng-show="EditEventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
                                 <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error edit modal title</p>                                     
                             </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.description.$invalid && !EditEventForm.description.$pristine }">
+                                    <label for="description" class="modal-label">Description </label>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" required></textarea>
+                                    <p ng-show="EditEventForm.description.$dirty && EditEventForm.description.$error.required" class="help-block">Description is required</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
                             <div class="form-group" ng-class="{ 'has-error' : selectError }">
                                 <label for="tag" class="modal-label">Tag </label>
                                 <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
@@ -154,12 +163,16 @@
                                 </select>
                                 <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
                             </div>
+                            </div>
+                            <div class="col-sm-6">
                             <div class="form-group" ng-class="{ 'has-error' : EditEventForm.start.$invalid && !EditEventForm.start.$pristine }">
                                 <label for="start" class="modal-label">Start </label>
                                 <input type="text" ng-model="start" name="start" class="edit-datepicker form-control" id="start" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/" required>
                                 <p ng-show="EditEventForm.start.$dirty && EditEventForm.start.$error.required" class="help-block">Start Date is required</p>
                                 <p ng-show="EditEventForm.start.$error.pattern" class="help-block">patter error edit modal start date</p>           
                             </div> 
+                            </div>
+                            <div class="col-sm-6">
                             <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
                                 <label for="end" class="modal-label">End </label>
                                 <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end"  required> 
@@ -168,7 +181,7 @@
                                 <!--                                <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p> ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"-->
                                 <input type="hidden" ng-model="id" name="id" class="form-control" id="id">      
                             </div>
-
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <div class="btn-group btn-group-justified" role="group" aria-label="...">

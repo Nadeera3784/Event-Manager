@@ -23,11 +23,12 @@ app.controller('action', function($scope, $rootScope, $http) {
     $scope.newEvent = function(){
         
         let title     =  $scope.title;
+        let description     =  $scope.description;
         let className =  $scope.className;
         let start     =  $scope.start;
         let end       =  $scope.end;
         
-           $http.post('http://localhost:3000/newEvent', {params: {title: title, start: start, end: end, className: className}}).then(function (httpResponse) {
+        $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
                 new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Created Successfully!', 2);
@@ -63,6 +64,7 @@ app.controller('action', function($scope, $rootScope, $http) {
     $scope.editEvent = function(){
         
         let id        = angular.element('#edit-modal #id').val();
+        let description     = angular.element('#edit-modal #description').val();
         let title     = angular.element('#edit-modal #title').val();
         let className = angular.element('#edit-modal #className').val(); 
         let start     = angular.element('#edit-modal #start').val();
@@ -119,6 +121,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                     element.bind('dblclick', function() {
                         angular.element('#edit-modal #id').val(event.id);
                         angular.element('#edit-modal #title').val(event.title);
+                        angular.element('#edit-modal #description').val(event.description);
                         angular.element('#edit-modal #className').val(event.className); 
                         angular.element('#edit-modal #start').val(moment(event.start).format('YYYY-MM-DD'));
                         angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD'));

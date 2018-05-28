@@ -15,7 +15,7 @@ api.use(bodyParser.urlencoded({extended: false}));
 api.post('/newEvent', function(req, res) {
       if (req.method == "POST") {
         var b = req.body;
-        var event = {title:b.params.title, start:b.params.start, end:b.params.end, className:b.params.className};
+          var event = {title:b.params.title, description:b.params.description, start:b.params.start, end:b.params.end, className:b.params.className};
         new mysql_2.MysqlHelpers().addEvents(new mysql_2.MysqlHelpers().initialize(), event).then(function (ret_val){
             res.json({'status': 200, 'msg': 'success'});
         });
@@ -54,7 +54,7 @@ api.delete('/deleteEvents', function (req, res) {
 
 api.post('/updateEvents', function (req, res) {
     var b = req.body;
-    var event = {id:b.params.id, title:b.params.title, start:b.params.start, end:b.params.end, className:b.params.className};
+    var event = {id:b.params.id, title:b.params.title,description:b.params.description, start:b.params.start, end:b.params.end, className:b.params.className};
     new mysql_2.MysqlHelpers().editEvent(new mysql_2.MysqlHelpers().initialize(), event).then(function (ret_val){
         res.send({'status': 200, 'msg': 'success'});
     });
