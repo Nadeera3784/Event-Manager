@@ -66,8 +66,9 @@
                     </div>                    
                     <form id="EventForm" name="EventForm"  novalidate>
                         <div class="modal-body">
-                            <div class="col-sm-12">
+                            <div class="col-md-12">
                                 <button type="reset" class="btn btn-info-outline btn-xs pull-right" data-toggle="tooltip" data-placement="left" title="Reset The Whole Form"><i class="fa fa-refresh"></i> Reset</button>
+                                
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.title.$invalid && !EventForm.title.$pristine }">
                                     <label for="title" class="modal-label">Title </label>
                                     <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8"
@@ -79,9 +80,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{ 'has-error' : EventForm.description.$invalid && !EventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" required></textarea>
+                                    <p ng-show="EventForm.description.$dirty && EventForm.description.$error.required" class="help-block">Description is required</p>
                                 </div>
                             </div>
                             <div class="col-sm-12">
