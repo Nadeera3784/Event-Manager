@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet"  href="fonts/css/font-awesome.min.css">
+        <link rel="stylesheet"  href="css/app.css">
+        <link rel="stylesheet"  href="css/fullcalendar.css">
+        <link rel="stylesheet"  href="css/notie.css">
+        <link rel="stylesheet"  href="css/datetimepicker.css">
+    </head>
+    <body ng-app="myApp" ng-controller="action">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-options">
+                    <div id="title-bar-btns">
+                        <button id="min-btn"><span class="fa fa-minus"></span></button>
+                        <!--<button id="max-btn"><span class="fa fa-window-maximize"></span></button>-->
+                        <button id="close-btn"><span class="fa fa-times"></span></button>
+                    </div>                    
+                </div>                     
+            </div>
+            <div class="panel-menu">
+                <span class="pull-right" id="about">Event Manager</span>
+                <div id="nav">
+                    <a href="#" class="nav-opener"><span></span></a>
+                    <div class="nav-drop">
+                        <div class="open-panel"><i class="fa fa-chevron-left"></i></div>
+                        <div class="drawer-header"><span class="drawer-heading"><i class="fa fa-briefcase"></i> Events</span>
+                        </div>
+                        <form>
+                             <input type="text" class="form-control" placeholder="Search events..." ng-model="searchkey">
+                        </form>
+                        <ul class="event-menu">
+                            <li ng-repeat="event in drawerEvents | filter:searchkey">
+                                <a href="#">
+                                    <span class="time"><i class="fa fa-clock-o"></i> {{event.start | time}}</span>
+                                    <span class="details">
+                                        <span class="event-icon circle" ng-click="deleteEvent(event.id)"><i class="fa fa-trash-o"></i></span>
+                                        {{event.title | ucwords}}
+                                    </span>
+                                </a>
+                            </li>                            
+                        </ul>                                                                                                                                                                         
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+
+                <button class="btn btn-info-outline" id="btn-new-events" ng-click="addModal()" data-toggle="tooltip" data-placement="top" title="Create a New Event"><i class="fa fa-plus-circle"></i> New Event</button> 
+                &nbsp;
+                <button class="btn btn-warning" id="trash" data-toggle="tooltip" data-placement="top" title="Drag Events Here to Delete"><i class="fa fa-trash-o"></i> Delete Bucket</button>                              
+                <br><br>
+                <div id="calendar"></div> 
+            </div>
+        </div>
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++NEW MODAL++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-subheader">
+                        <h4  class="modal-title"><i class="fa fa-plus-circle"></i> New Event</h4>
+                    </div>                    
+                    <form id="EventForm" name="EventForm"  novalidate>
+                        <div class="modal-body">
+                            <button type="reset" class="btn btn-info-outline btn-xs pull-right" data-toggle="tooltip" data-placement="left" title="Reset The Whole Form"><i class="fa fa-refresh"></i> Reset</button>
+
+                            <div class="form-group" ng-class="{ 'has-error' : EventForm.title.$invalid && !EventForm.title.$pristine }">
+                                <label for="title" class="modal-label">Title </label>
+                                <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8"
+                                ng-pattern="/^[a-z][a-z0-9_\.>]{0,24}$/i" required>
+                                <p ng-show="EventForm.title.$dirty && EventForm.title.$error.required" class="help-block">Title is required</p>
+                                <p ng-show="EventForm.title.$error.minlength" class="help-block">Title is too short.</p>
+                                <p ng-show="EventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
+                                <p ng-show="EventForm.title.$error.pattern" class="help-block">pattern error title</p>                 
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : selectError }">
+                                <label for="tag" class="modal-label">Tag </label>
+                                <select class="form-control" ng-model="className" ng-change="selectionValidator()" required>
+                                    <option value="">Please Select...</option>
+                                    <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
+                                </select>
+                                <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : EventForm.start.$invalid && !EventForm.start.$pristine }">
+                                <label for="start" class="modal-label">Start </label>
+                                <input type="text" ng-model="start" name="start" class="new-datepicker form-control" id="start" required>
+                                <p ng-show="EventForm.start.$dirty && EventForm.start.$error.required" class="help-block">Start Date is required</p>
+                            </div> 
+                            <div class="form-group" ng-class="{ 'has-error' : EventForm.end.$invalid && !EventForm.end.$pristine }">
+                                <label for="end" class="modal-label">End </label>
+                                <input type="text" ng-model="end" name="end" class="new-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
+                                <p ng-show="EventForm.end.$dirty && EventForm.end.$error.required" class="help-block">End Date is required</p>    
+                                <p ng-show="EventForm.end.$error.pattern" class="help-block">patter error end date</p>   
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info" ng-click="newEvent()"  ng-disabled="EventForm.$invalid"><i class="fa fa-check-square-o"></i> Ok</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--++++++++++Edit Modal ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-subheader">
+                        <h4  class="modal-title"><i class="fa fa-plus-circle"></i> Edit Event</h4>
+                    </div>                    
+                    <form id="EditEventForm" name="EditEventForm"  novalidate>
+                        <div class="modal-body">
+
+                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.title.$invalid && !EditEventForm.title.$pristine }">
+                                <label for="title" class="modal-label">Title </label>
+                                <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="8" ng-pattern="/^[a-z][a-z0-9_\.>]{0,24}$/i" required>
+                                <p ng-show="EditEventForm.title.$dirty && EditEventForm.title.$error.required" class="help-block">Title is required</p>
+                                <p ng-show="EditEventForm.title.$error.minlength" class="help-block">Title is too short.</p>
+                                <p ng-show="EditEventForm.title.$error.maxlength" class="help-block">Title is too long.</p>
+                                <p ng-show="EditEventForm.title.$error.pattern" class="help-block">pattern error edit modal title</p>                                     
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : selectError }">
+                                <label for="tag" class="modal-label">Tag </label>
+                                <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
+                                    <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
+                                </select>
+                                <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.start.$invalid && !EditEventForm.start.$pristine }">
+                                <label for="start" class="modal-label">Start </label>
+                                <input type="text" ng-model="start" name="start" class="edit-datepicker form-control" id="start" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/" required>
+                                <p ng-show="EditEventForm.start.$dirty && EditEventForm.start.$error.required" class="help-block">Start Date is required</p>
+                                <p ng-show="EditEventForm.start.$error.pattern" class="help-block">patter error edit modal start date</p>           
+                            </div> 
+                            <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
+                                <label for="end" class="modal-label">End </label>
+                                <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end"  required> 
+                                <p ng-show="EditEventForm.end.$dirty && EditEventForm.end.$error.required" class="help-block">End Date is required</p>    
+                                <p ng-show="EditEventForm.end.$error.date" class="help-block">Title is too short.</p>
+                                <!--                                <p ng-show="EditEventForm.end.$error.pattern" class="help-block">patter error edit model end date</p> ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"-->
+                                <input type="hidden" ng-model="id" name="id" class="form-control" id="id">      
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info" ng-click="editEvent()"><i class="fa fa-save"></i> Save</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!--+++++++++++++++++++++++++++++++++++++++++++++ABOUT MODAL ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-subheader">
+                        <h4 class="modal-title"><i class="fa fa-question-circle-o"></i> About Event Manager</h4>
+                    </div>                    
+                    <form>
+                        <div class="modal-body">
+
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a showtab="" href="#default">About</a></li>                               
+                                <li><a showtab="" href="#license">License</a></li>
+                                <li><a showtab="" href="#credits">Credits</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+
+                                <div class="tab-pane fade in active" id="default">
+                                    <br>
+                                    <p>Version 1.0.1</p>
+                                    <p>Event Manager helps you to Manage your daily schedule in the easiest way!</p>
+                                    <p>Event Manager is Developed by R.Nadeera Sampath</p>
+                                    <p>Got any feedback? Found a bug? Let us know : johndoe@gmail.com</p>
+                                </div>
+
+                                <div class="tab-pane fade" id="license">
+                                    <br>
+                                    <p>This Computer program is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this program, or any part of it, may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.</p>
+                                    <p>Copyright &copy; 2018 All right reserved.</p>
+                                </div>
+
+                                <div class="tab-pane fade" id="credits">
+                                    <br>
+                                    <p>A number of MIT, LGPL and other copyrighted libraries and resources have been used in this program. These copyrights remain the property of their owners.</p>
+                                    <p>Some of these libraries include :</p>
+                                    <ul class="list-inline">
+                                        <li>Nodejs</li>
+                                        <li>bootstrap</li>
+                                        <li>material datetimepicker</li>
+                                        <li>fullcalendar</li>
+                                        <li>notie</li>
+                                        <li>moment</li>
+                                        <li>angular</li>
+                                    </ul>
+                                </div>   
+
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>            
+
+        <script>window.$ = window.jQuery = require('./js/jquery.js');</script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="js/fullcalendar.min.js"></script>
+        <script src="js/datetimepicker.js"></script>
+        <script src="js/jquery.slimscroll.min.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="controllers/base.js"></script>
+        <script src="controllers/action.js"></script>
+        <script src="directives/tab.js"></script>
+        <script src="helpers/ucwords.js"></script>
+        <script src="helpers/time.js"></script>
+    </body>
+
+</html>
