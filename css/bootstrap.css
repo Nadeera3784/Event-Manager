@@ -5306,7 +5306,7 @@ button.close {
   left: 0;
   z-index: 1060;
   display: none;
-  max-width: 276px;
+  max-width: 230px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -5366,13 +5366,13 @@ button.close {
     padding: 8px 14px;
     font-size: 14px;
     background-color: #fff;
-    /*border-bottom: 1px solid #e2eaf2;*/
+    border-bottom: 1px solid #e2eaf2;
     border-radius: 5px 5px 0 0;
 }
 
 
 .popover-content {
-  padding: 9px 14px;
+  /*padding: 9px 14px;*/
 }
 .popover > .arrow,
 .popover > .arrow:after {

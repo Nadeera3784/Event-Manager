@@ -81,7 +81,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.description.$invalid && !EventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,100}$/i" required ></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.>]{0,100}$/i" required ></textarea>
                                     <p ng-show="EventForm.description.$dirty && EventForm.description.$error.required" class="help-block">Description is required</p>
                                     <p ng-show="EventForm.description.$error.minlength" class="help-block">description is too short.</p>
                                     <p ng-show="EventForm.description.$error.pattern" class="help-block">patter error description</p>   
@@ -154,7 +154,7 @@
                             <div class="col-md-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EditEventForm.description.$invalid && !EditEventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_\.>]{0,100}$/i" required></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.>]{0,100}$/i" required></textarea>
                                     <p ng-show="EditEventForm.description.$dirty && EditEventForm.description.$error.required" class="help-block">Description is required</p>
                                     <p ng-show="EditEventForm.description.$error.minlength" class="help-block">Description is too short.</p>
                                     <p ng-show="EditEventForm.description.$error.pattern" class="help-block">pattern error description</p>          

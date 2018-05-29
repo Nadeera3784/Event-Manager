@@ -1186,3 +1186,24 @@ body.modal {
 .mb{
   margin-bottom: 20px;   
 }
+.pb-10{
+  padding-top: 10px;
+}
+.no-margin{
+    margin: 0;
+}
+.text-display{
+    font-size: 2.61rem;
+    font-weight: 400;
+    line-height: 3.07rem;
+}
+.text-warning {
+    color: #f0ad4e;
+}
+
+.text-success {
+    color: #81b53e;
+}
+.popover-content-date-month{
+    color: #9a9a9a;    
+}

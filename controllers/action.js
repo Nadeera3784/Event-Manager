@@ -22,11 +22,11 @@ app.controller('action', function($scope, $rootScope, $http) {
     
     $scope.newEvent = function(){
         
-        let title     =  $scope.title;
-        let description     =  $scope.description;
-        let className =  $scope.className;
-        let start     =  $scope.start;
-        let end       =  $scope.end;
+        let title       =  $scope.title;
+        let description =  $scope.description;
+        let className   =  $scope.className;
+        let start       =  $scope.start;
+        let end         =  $scope.end;
         
         $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
@@ -38,8 +38,6 @@ app.controller('action', function($scope, $rootScope, $http) {
                 new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
             }
         });
-            
-
     }
 
     
@@ -63,12 +61,12 @@ app.controller('action', function($scope, $rootScope, $http) {
     
     $scope.editEvent = function(){
         
-        let id        = angular.element('#edit-modal #id').val();
-        let description     = angular.element('#edit-modal #description').val();
-        let title     = angular.element('#edit-modal #title').val();
-        let className = angular.element('#edit-modal #className').val(); 
-        let start     = angular.element('#edit-modal #start').val();
-        let end       = angular.element('#edit-modal #end').val();
+        let id           = angular.element('#edit-modal #id').val();
+        let description  = angular.element('#edit-modal #description').val();
+        let title        = angular.element('#edit-modal #title').val();
+        let className    = angular.element('#edit-modal #className').val(); 
+        let start        = angular.element('#edit-modal #start').val();
+        let end          = angular.element('#edit-modal #end').val();
         
         $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
@@ -79,10 +77,9 @@ app.controller('action', function($scope, $rootScope, $http) {
                 new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
             }
         });        
-        
     }
            
-        $('#calendar').fullCalendar({          
+    $('#calendar').fullCalendar({          
                 header: {
                     left: 'today',
                     center: 'prev title next',
@@ -159,18 +156,14 @@ app.controller('action', function($scope, $rootScope, $http) {
                         title:calEvent.title,
                         //content: "Start" + " " + moment(calEvent.start).format('YYYY-MM-DD') +  "End" + " " +  moment(calEvent.end).format('YYYY-MM-DD'),
                         container:"body",
-                        placement:'auto right',
+                        placement:'auto',
                         animation: true,
-                        html: true,
+                        html: true,  //moment(calEvent.start).format('DD, MMMM')
                         content: function () {
-                            return "<p>" + "<strong>Start</strong>" + "  " + moment(calEvent.start).format('YYYY-MM-DD') + "</p>" + "<p>" + "<strong>End</strong>" + " " + moment(calEvent.end).format('YYYY-MM-DD') + "</p><br>";
+                            return '<div class="col-xs-3"><h5 class="popover-content-date-month">'+moment(calEvent.start).format('MMM')+'</h5><p class="text-display text-success">'+moment(calEvent.start).format('DD')+'</p><h5 class="popover-content-date-month">'+moment(calEvent.end).format('MMM')+'</h5><p class="text-display text-warning">'+moment(calEvent.end).format('DD')+'</p></div><div class="col-xs-9 pb-10"><p class="popover-content-date-month">'+calEvent.description+'</p></div>';
                         }
                     });
-                }           
-
-
-            
-            
+                }              
         });     
     
     function editCalendar(event){
@@ -181,10 +174,11 @@ app.controller('action', function($scope, $rootScope, $http) {
             end = start;
         }
 
-        id =  event.id;
-        title = event.title;
-        className = event.className;
+        id          =  event.id;
+        title       = event.title;
+        className   = event.className;
         description = event.description;
+        
         $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
@@ -193,7 +187,6 @@ app.controller('action', function($scope, $rootScope, $http) {
                 new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
             }
         });             
-        
     }
 
     
