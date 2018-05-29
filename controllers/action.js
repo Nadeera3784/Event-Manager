@@ -121,7 +121,12 @@ app.controller('action', function($scope, $rootScope, $http) {
                         angular.element('#edit-modal #description').val(event.description);
                         angular.element('#edit-modal #className').val(event.className); 
                         angular.element('#edit-modal #start').val(moment(event.start).format('YYYY-MM-DD'));
-                        angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD'));
+                        //angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD'));
+                        if(angular.element('#edit-modal #end').val() == '' || angular.element('#edit-modal #end').val() == null){
+                            angular.element('#edit-modal #end').val(angular.copy(moment(event.start).format('YYYY-MM-DD')));
+                        }else{
+                            angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD')); 
+                        }
                         angular.element('#edit-modal').modal('show');
                     });
                 },
@@ -154,12 +159,14 @@ app.controller('action', function($scope, $rootScope, $http) {
                     $(this).popover({
                         trigger:'hover',
                         title:calEvent.title,
-                        //content: "Start" + " " + moment(calEvent.start).format('YYYY-MM-DD') +  "End" + " " +  moment(calEvent.end).format('YYYY-MM-DD'),
                         container:"body",
                         placement:'auto',
                         animation: true,
-                        html: true,  //moment(calEvent.start).format('DD, MMMM')
+                        html: true,  
                         content: function () {
+                            if(calEvent.end == '' || calEvent.end == null){
+                                calEvent.end = angular.copy(calEvent.start);
+                            }
                             return '<div class="col-xs-3"><h5 class="popover-content-date-month">'+moment(calEvent.start).format('MMM')+'</h5><p class="text-display text-success">'+moment(calEvent.start).format('DD')+'</p><h5 class="popover-content-date-month">'+moment(calEvent.end).format('MMM')+'</h5><p class="text-display text-warning">'+moment(calEvent.end).format('DD')+'</p></div><div class="col-xs-9 pb-10"><p class="popover-content-date-month">'+calEvent.description+'</p></div>';
                         }
                     });
