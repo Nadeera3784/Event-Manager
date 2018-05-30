@@ -7,7 +7,7 @@ app.controller('action', function($scope, $rootScope, $http) {
         {"value": 'success',"name": "Travel"},
         {"value": 'ready',"name": "Busy"}
     ];
-    
+        
     $scope.selectionValidator = function(){
         if ($scope.className != "" && $scope.className != undefined && $scope.className != 0){
             $scope.selectError = false;
@@ -107,6 +107,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                     success: function(response) {
                         $scope.drawerEvents = response;
                         $scope.$apply();
+                        angular.element('.fc-center').find('h2').attr('ng-model', 'currmonth');
                     },
                 },
                 select: function(start, end) {
@@ -181,7 +182,7 @@ app.controller('action', function($scope, $rootScope, $http) {
             end = start;
         }
 
-        id          =  event.id;
+        id          = event.id;
         title       = event.title;
         className   = event.className;
         description = event.description;
@@ -221,5 +222,4 @@ app.controller('action', function($scope, $rootScope, $http) {
         }
         return false;
     }
-    $('.fc-center').find('h2').attr('ng-model', 'currmonth');
 });
