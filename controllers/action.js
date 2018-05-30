@@ -110,9 +110,10 @@ app.controller('action', function($scope, $rootScope, $http) {
                     },
                 },
                 select: function(start, end) {
-                    angular.element('#new-modal #start').val(moment(start).format('YYYY-MM-DD'));
-                    angular.element('#new-modal #end').val(moment(end).format('YYYY-MM-DD'));
+                    $scope.start = moment(start).format('YYYY-MM-DD');
+                    $scope.end = moment(end).format('YYYY-MM-DD');
                     angular.element('#new-modal').modal('show');
+                    $scope.$apply();
                 },
                 eventRender: function(event, element) {
                     element.bind('dblclick', function() {
