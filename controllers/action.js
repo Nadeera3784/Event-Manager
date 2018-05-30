@@ -221,5 +221,5 @@ app.controller('action', function($scope, $rootScope, $http) {
         }
         return false;
     }
-
+    $('.fc-center').find('h2').attr('ng-model', 'currmonth');
 });
