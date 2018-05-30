@@ -9,7 +9,7 @@ app.controller('action', function($scope, $rootScope, $http) {
     ];
     
     $scope.selectionValidator = function(){
-        if ($scope.className != "" && $scope.className != undefined){
+        if ($scope.className != "" && $scope.className != undefined && $scope.className != 0){
             $scope.selectError = false;
         }else{
             $scope.selectError = true;
