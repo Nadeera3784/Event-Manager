@@ -28,6 +28,22 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start       =  $scope.start;
         let end         =  $scope.end;
         
+        if(title == '' || title == null || title == 0){
+          console.log('title error'); 
+        }
+        if(description == '' || description == null || description == 0){
+            console.log('description error'); 
+        }
+        if(className == '' || className == null || className == 0){
+            console.log('className error'); 
+        }
+        if(start == '' || start == null || start == 0){
+            console.log('start error'); 
+        }
+        if(end == '' || end == null || end == 0){
+            console.log('end error'); 
+        }
+        
         $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
@@ -68,7 +84,15 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start        = angular.element('#edit-modal #start').val();
         let end          = angular.element('#edit-modal #end').val();
         
-        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+        if(title == '' || title == null || title == 0){
+            console.log('title error'); 
+            //angular.element('#edit-modal .btn-info').attr('disabled', true);
+        }else{
+            angular.element('#edit-modal .btn-info').attr('disabled', false);
+            console.log('boom' + title);
+        }
+        
+/*        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
                 new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
@@ -76,7 +100,7 @@ app.controller('action', function($scope, $rootScope, $http) {
             }else{
                 new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
             }
-        });        
+        }); */       
     }
            
     $('#calendar').fullCalendar({          
