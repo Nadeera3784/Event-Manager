@@ -47,7 +47,7 @@ app.controller('action', function($scope, $rootScope, $http) {
         $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
-                new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Created Successfully!', 2);
+                new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
                 angular.element("#EventForm")[0].reset();
                 angular.element('#new-modal').modal('hide');
             }else{
@@ -84,14 +84,31 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start        = angular.element('#edit-modal #start').val();
         let end          = angular.element('#edit-modal #end').val();
         
-        if(title == '' || title == null || title == 0){
-            console.log('title error'); 
-            //angular.element('#edit-modal .btn-info').attr('disabled', true);
-        }else{
-            angular.element('#edit-modal .btn-info').attr('disabled', false);
-            console.log('boom' + title);
-        }
+        let valid = true;
         
+        if(title == '' || title == null || title == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Title', 2);
+            valid = false;
+        }
+        if(description == '' || description == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Description', 2);
+            valid = false;
+        }
+        if(className == '' || className == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  Tag', 2);
+            valid = false;
+        }
+        if(start == '' || start == null || start == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  Start Date', 2);
+            valid = false;
+        }
+        if(end == '' || end == null || end == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  End Date', 2);
+            valid = false;
+        }
+        if(valid){
+            console.log(title);
+        }
 /*        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
             if (httpResponse.data.status === 200) {
                 $('#calendar').fullCalendar("refetchEvents");
