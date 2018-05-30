@@ -167,7 +167,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                             if(calEvent.end == '' || calEvent.end == null){
                                 calEvent.end = angular.copy(calEvent.start);
                             }
-                            return '<div class="col-xs-3"><h5 class="popover-content-date-month">'+moment(calEvent.start).format('MMM')+'</h5><p class="text-display text-success">'+moment(calEvent.start).format('DD')+'</p><h5 class="popover-content-date-month">'+moment(calEvent.end).format('MMM')+'</h5><p class="text-display text-warning">'+moment(calEvent.end).format('DD')+'</p></div><div class="col-xs-9 pb-10"><p class="popover-content-date-month">'+calEvent.description+'</p></div>';
+                            return '<div class="col-xs-3"><h5 class="popover-content-date-month">'+moment(calEvent.start).format('MMM')+'</h5><p class="popover-content-description text-success">'+moment(calEvent.start).format('DD')+'</p><h5 class="popover-content-date-month">'+moment(calEvent.end).format('MMM')+'</h5><p class="popover-content-description text-warning">'+moment(calEvent.end).format('DD')+'</p></div><div class="col-xs-9 pb-10"><p class="popover-content-date-month">'+calEvent.description+'</p></div>';
                         }
                     });
                 }              
