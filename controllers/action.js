@@ -122,7 +122,6 @@ app.controller('action', function($scope, $rootScope, $http) {
                         angular.element('#edit-modal #description').val(event.description);
                         angular.element('#edit-modal #className').val(event.className); 
                         angular.element('#edit-modal #start').val(moment(event.start).format('YYYY-MM-DD'));
-                        //angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD'));
                         if(angular.element('#edit-modal #end').val() == '' || angular.element('#edit-modal #end').val() == null){
                             angular.element('#edit-modal #end').val(angular.copy(moment(event.start).format('YYYY-MM-DD')));
                         }else{
