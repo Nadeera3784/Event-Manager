@@ -28,32 +28,46 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start       =  $scope.start;
         let end         =  $scope.end;
         
+        let valid = true;
+
         if(title == '' || title == null || title == 0){
-          console.log('title error'); 
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
+            valid = false;
+        }else if(title != title.match(/^[a-z-0-9][a-z0-9_\ ./>]{1,12}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 2 characters', 2);
+            valid = false;
         }
-        if(description == '' || description == null || description == 0){
-            console.log('description error'); 
+        if(description == '' || description == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
+            valid = false;
+        }else if(description != description.match(/^[a-z-0-9][a-z0-9_\ ./,>]{4,100}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 5 characters', 2);
+            valid = false;
         }
-        if(className == '' || className == null || className == 0){
-            console.log('className error'); 
+        if(className == '' || className == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
+            valid = false;
         }
         if(start == '' || start == null || start == 0){
-            console.log('start error'); 
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
+            valid = false;
         }
         if(end == '' || end == null || end == 0){
-            console.log('end error'); 
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
+            valid = false;
         }
-        
-        $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
-            if (httpResponse.data.status === 200) {
-                $('#calendar').fullCalendar("refetchEvents");
-                new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
-                angular.element("#EventForm")[0].reset();
-                angular.element('#new-modal').modal('hide');
-            }else{
-                new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
-            }
-        });
+        if(valid){
+            $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+                if (httpResponse.data.status === 200) {
+                    $('#calendar').fullCalendar("refetchEvents");
+                    new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
+                    angular.element("#EventForm")[0].reset();
+                    angular.element('#new-modal').modal('hide');
+                }else{
+                    new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+                }
+            });          
+        }
     }
 
     
@@ -89,9 +103,15 @@ app.controller('action', function($scope, $rootScope, $http) {
         if(title == '' || title == null || title == 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
             valid = false;
+        }else if(title != title.match(/^[a-z-0-9][a-z0-9_\. />]{1,12}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 2 characters', 2);
+            valid = false;
         }
         if(description == '' || description == null){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
+            valid = false;
+        }else if(description != description.match(/^[a-z-0-9][a-z0-9_\ ./,>]{4,100}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 5 characters', 2);
             valid = false;
         }
         if(className == '' || className == null){
@@ -107,17 +127,16 @@ app.controller('action', function($scope, $rootScope, $http) {
             valid = false;
         }
         if(valid){
-            console.log(title);
-        }
-/*        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
-            if (httpResponse.data.status === 200) {
-                $('#calendar').fullCalendar("refetchEvents");
-                new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
-                angular.element('#edit-modal').modal('hide');
-            }else{
-                new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
-            }
-        }); */       
+            $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+                if (httpResponse.data.status === 200) {
+                    $('#calendar').fullCalendar("refetchEvents");
+                    new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
+                    angular.element('#edit-modal').modal('hide');
+                }else{
+                    new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+                }
+            });            
+        }        
     }
            
     $('#calendar').fullCalendar({          
@@ -156,6 +175,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                     $scope.end = moment(end).format('YYYY-MM-DD');
                     angular.element('#new-modal').modal('show');
                     $scope.$apply();
+                    $('#calendar').fullCalendar('unselect');
                 },
                 eventRender: function(event, element) {
                     element.bind('dblclick', function() {
