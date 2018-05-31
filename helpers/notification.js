@@ -22,6 +22,14 @@ var NotificationHelpers = (function () {
         });
     };
     
+    NotificationHelpers.prototype.warning = function (msg, timeout) {
+        Noty.alert({
+            type: 2,
+            text: msg,
+            time: timeout
+        });
+    };
+    
     NotificationHelpers.prototype.confirm = function (msg, callback, subcallback) {
         Noty.confirm({
             type: 1,

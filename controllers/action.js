@@ -7,9 +7,9 @@ app.controller('action', function($scope, $rootScope, $http) {
         {"value": 'success',"name": "Travel"},
         {"value": 'ready',"name": "Busy"}
     ];
-    
+        
     $scope.selectionValidator = function(){
-        if ($scope.className != "" && $scope.className != undefined){
+        if ($scope.className != "" && $scope.className != undefined && $scope.className != 0){
             $scope.selectError = false;
         }else{
             $scope.selectError = true;
@@ -28,16 +28,46 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start       =  $scope.start;
         let end         =  $scope.end;
         
-        $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
-            if (httpResponse.data.status === 200) {
-                $('#calendar').fullCalendar("refetchEvents");
-                new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Created Successfully!', 2);
-                angular.element("#EventForm")[0].reset();
-                angular.element('#new-modal').modal('hide');
-            }else{
-                new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
-            }
-        });
+        let valid = true;
+
+        if(title == '' || title == null || title == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
+            valid = false;
+        }else if(title != title.match(/^[a-z-0-9][a-z0-9_\ ./>]{1,12}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 2 characters', 2);
+            valid = false;
+        }
+        if(description == '' || description == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
+            valid = false;
+        }else if(description != description.match(/^[a-z-0-9][a-z0-9_\ ./,>]{4,100}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 5 characters', 2);
+            valid = false;
+        }
+        if(className == '' || className == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
+            valid = false;
+        }
+        if(start == '' || start == null || start == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
+            valid = false;
+        }
+        if(end == '' || end == null || end == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
+            valid = false;
+        }
+        if(valid){
+            $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+                if (httpResponse.data.status === 200) {
+                    $('#calendar').fullCalendar("refetchEvents");
+                    new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
+                    angular.element("#EventForm")[0].reset();
+                    angular.element('#new-modal').modal('hide');
+                }else{
+                    new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+                }
+            });          
+        }
     }
 
     
@@ -68,15 +98,45 @@ app.controller('action', function($scope, $rootScope, $http) {
         let start        = angular.element('#edit-modal #start').val();
         let end          = angular.element('#edit-modal #end').val();
         
-        $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
-            if (httpResponse.data.status === 200) {
-                $('#calendar').fullCalendar("refetchEvents");
-                new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
-                angular.element('#edit-modal').modal('hide');
-            }else{
-                new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
-            }
-        });        
+        let valid = true;
+        
+        if(title == '' || title == null || title == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
+            valid = false;
+        }else if(title != title.match(/^[a-z-0-9][a-z0-9_\. />]{1,12}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 2 characters', 2);
+            valid = false;
+        }
+        if(description == '' || description == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
+            valid = false;
+        }else if(description != description.match(/^[a-z-0-9][a-z0-9_\ ./,>]{4,100}$/i)){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 5 characters', 2);
+            valid = false;
+        }
+        if(className == '' || className == null){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
+            valid = false;
+        }
+        if(start == '' || start == null || start == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
+            valid = false;
+        }
+        if(end == '' || end == null || end == 0){
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
+            valid = false;
+        }
+        if(valid){
+            $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+                if (httpResponse.data.status === 200) {
+                    $('#calendar').fullCalendar("refetchEvents");
+                    new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
+                    angular.element('#edit-modal').modal('hide');
+                }else{
+                    new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+                }
+            });            
+        }        
     }
            
     $('#calendar').fullCalendar({          
@@ -107,12 +167,15 @@ app.controller('action', function($scope, $rootScope, $http) {
                     success: function(response) {
                         $scope.drawerEvents = response;
                         $scope.$apply();
+                        angular.element('.fc-center').find('h2').attr('ng-model', 'currmonth');
                     },
                 },
                 select: function(start, end) {
-                    angular.element('#new-modal #start').val(moment(start).format('YYYY-MM-DD'));
-                    angular.element('#new-modal #end').val(moment(end).format('YYYY-MM-DD'));
+                    $scope.start = moment(start).format('YYYY-MM-DD');
+                    $scope.end = moment(end).format('YYYY-MM-DD');
                     angular.element('#new-modal').modal('show');
+                    $scope.$apply();
+                    $('#calendar').fullCalendar('unselect');
                 },
                 eventRender: function(event, element) {
                     element.bind('dblclick', function() {
@@ -121,7 +184,6 @@ app.controller('action', function($scope, $rootScope, $http) {
                         angular.element('#edit-modal #description').val(event.description);
                         angular.element('#edit-modal #className').val(event.className); 
                         angular.element('#edit-modal #start').val(moment(event.start).format('YYYY-MM-DD'));
-                        //angular.element('#edit-modal #end').val(moment(event.end).format('YYYY-MM-DD'));
                         if(angular.element('#edit-modal #end').val() == '' || angular.element('#edit-modal #end').val() == null){
                             angular.element('#edit-modal #end').val(angular.copy(moment(event.start).format('YYYY-MM-DD')));
                         }else{
@@ -181,7 +243,7 @@ app.controller('action', function($scope, $rootScope, $http) {
             end = start;
         }
 
-        id          =  event.id;
+        id          = event.id;
         title       = event.title;
         className   = event.className;
         description = event.description;
@@ -221,5 +283,4 @@ app.controller('action', function($scope, $rootScope, $http) {
         }
         return false;
     }
-
 });
