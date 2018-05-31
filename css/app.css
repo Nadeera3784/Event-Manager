@@ -501,161 +501,6 @@ fieldset[disabled] .btn-danger.active {
     text-decoration: none;
     box-shadow: none;
 }
-
-.btn-neutral {
-    background-color: #FFFFFF;
-    color: #f96332;
-}
-
-.btn-neutral:hover,
-.btn-neutral:focus,
-.btn-neutral:active,
-.btn-neutral.active,
-.btn-neutral:active:focus,
-.btn-neutral:active:hover,
-.btn-neutral.active:focus,
-.btn-neutral.active:hover,
-.show>.btn-neutral.dropdown-toggle,
-.show>.btn-neutral.dropdown-toggle:focus,
-.show>.btn-neutral.dropdown-toggle:hover {
-    background-color: #FFFFFF;
-    color: #FFFFFF;
-    box-shadow: none;
-}
-
-.btn-neutral:hover {
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
-}
-
-.btn-neutral.disabled,
-.btn-neutral.disabled:hover,
-.btn-neutral.disabled:focus,
-.btn-neutral.disabled.focus,
-.btn-neutral.disabled:active,
-.btn-neutral.disabled.active,
-.btn-neutral:disabled,
-.btn-neutral:disabled:hover,
-.btn-neutral:disabled:focus,
-.btn-neutral:disabled.focus,
-.btn-neutral:disabled:active,
-.btn-neutral:disabled.active,
-.btn-neutral[disabled],
-.btn-neutral[disabled]:hover,
-.btn-neutral[disabled]:focus,
-.btn-neutral[disabled].focus,
-.btn-neutral[disabled]:active,
-.btn-neutral[disabled].active,
-fieldset[disabled] .btn-neutral,
-fieldset[disabled] .btn-neutral:hover,
-fieldset[disabled] .btn-neutral:focus,
-fieldset[disabled] .btn-neutral.focus,
-fieldset[disabled] .btn-neutral:active,
-fieldset[disabled] .btn-neutral.active {
-    background-color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.btn-neutral.btn-danger {
-    color: #FF3636;
-}
-
-.btn-neutral.btn-danger:hover,
-.btn-neutral.btn-danger:focus,
-.btn-neutral.btn-danger:active {
-    color: #ff5555;
-}
-
-.btn-neutral.btn-info {
-    color: #2CA8FF;
-}
-
-.btn-neutral.btn-info:hover,
-.btn-neutral.btn-info:focus,
-.btn-neutral.btn-info:active {
-    color: #4bb5ff;
-}
-
-.btn-neutral.btn-warning {
-    color: #FFB236;
-}
-
-.btn-neutral.btn-warning:hover,
-.btn-neutral.btn-warning:focus,
-.btn-neutral.btn-warning:active {
-    color: #ffbe55;
-}
-
-.btn-neutral.btn-success {
-    color: #18ce0f;
-}
-
-.btn-neutral.btn-success:hover,
-.btn-neutral.btn-success:focus,
-.btn-neutral.btn-success:active {
-    color: #1beb11;
-}
-
-.btn-neutral.btn-default {
-    color: #888;
-}
-
-.btn-neutral.btn-default:hover,
-.btn-neutral.btn-default:focus,
-.btn-neutral.btn-default:active {
-    color: #979797;
-}
-
-.btn-neutral.active,
-.btn-neutral:active,
-.btn-neutral:active:focus,
-.btn-neutral:active:hover,
-.btn-neutral.active:focus,
-.btn-neutral.active:hover,
-.show>.btn-neutral.dropdown-toggle,
-.show>.btn-neutral.dropdown-toggle:focus,
-.show>.btn-neutral.dropdown-toggle:hover {
-    background-color: #FFFFFF;
-    color: #fa7a50;
-    box-shadow: none;
-}
-
-.btn-neutral:hover,
-.btn-neutral:focus {
-    color: #fa7a50;
-}
-
-.btn-neutral:hover:not(.nav-link),
-.btn-neutral:focus:not(.nav-link) {
-    box-shadow: none;
-}
-
-.btn-neutral.btn-simple {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.btn-neutral.btn-simple:hover,
-.btn-neutral.btn-simple:focus,
-.btn-neutral.btn-simple:active {
-    background-color: transparent;
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    box-shadow: none;
-}
-
-.btn-neutral.btn-link {
-    color: #FFFFFF;
-}
-
-.btn-neutral.btn-link:hover,
-.btn-neutral.btn-link:focus,
-.btn-neutral.btn-link:active {
-    background-color: transparent;
-    color: #FFFFFF;
-    text-decoration: none;
-    box-shadow: none;
-}
-
 .btn:disabled,
 .btn[disabled],
 .btn.disabled {
@@ -946,28 +791,6 @@ body.modal {
     border-radius:0;
     margin-bottom: 0;
 }
-/*.fc .fc-toolbar {
-    height:50px;
-    color:#fff;
-    background:transparent;
-    border-radius:0;
-    margin-bottom: 0;
-}
-.fc .fc-toolbar .fc-button {
-    color:#fff;
-    background:transparent;
-    border:none;
-    box-shadow:none;
-    text-shadow:none;
-    margin:0;
-    height:50px;
-    line-height:28px;
-    padding:10px
-}
-.fc .fc-toolbar .fc-button:hover {
-    color:#fff
-}
-*/
 
 .fc .fc-toolbar h2 {
     color: #b5b9bf;
@@ -975,7 +798,7 @@ body.modal {
 .fc .fc-view-container .fc-event {
     color: #FFF;
     padding:3px 5px;
-    border-left:3px solid #7a8da4;
+/*    border-left:3px solid #7a8da4;*/
     border-radius: 5px;
     box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2);
 }
