@@ -167,7 +167,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                     success: function(response) {
                         $scope.drawerEvents = response;
                         $scope.$apply();
-                        angular.element('.fc-center').find('h2').attr('ng-model', 'currmonth');
+                        //angular.element('.fc-center').find('h2').attr('ng-model', 'currmonth');
                     },
                 },
                 select: function(start, end) {
