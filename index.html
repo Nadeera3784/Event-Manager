@@ -27,9 +27,7 @@
                         <div class="open-panel"><i class="fa fa-chevron-left"></i></div>
                         <div class="drawer-header"><span class="drawer-heading"><i class="fa fa-briefcase"></i> Events</span>
                         </div>
-                        <form>
-                             <input type="text" class="form-control" placeholder="Search events..." ng-model="searchkey">
-                        </form>
+                             <input type="text" class="form-control form-search" placeholder="Search events..." ng-model="searchkey">
                         <ul class="event-menu">
                             <li ng-repeat="event in drawerEvents | filter:searchkey">
                                 <a href="#">
@@ -81,7 +79,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.description.$invalid && !EventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \./>]{0,100}$/i" required ></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.,/>]{0,100}$/i" required ></textarea>
                                     <p ng-show="EventForm.description.$dirty && EventForm.description.$error.required" class="help-block">Description is required</p>
                                     <p ng-show="EventForm.description.$error.minlength" class="help-block">Must have minimum 5 characters</p>
                                     <p ng-show="EventForm.description.$error.pattern" class="help-block">Is not allowed (A-Z, a-z, 0-9 only)</p>   
@@ -154,9 +152,10 @@
                             <div class="col-md-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EditEventForm.description.$invalid && !EditEventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \./>]{0,100}$/i" required></textarea>
+                                    <textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.,/>]{0,500}$/i" ng-maxlength="100" required></textarea>
                                     <p ng-show="EditEventForm.description.$dirty && EditEventForm.description.$error.required" class="help-block">Description is required</p>
                                     <p ng-show="EditEventForm.description.$error.minlength" class="help-block">Must have minimum 5 characters</p>
+                                    <p ng-show="EditEventForm.description.$error.maxlength" class="help-block">Maximum number of characters exceeded</p>
                                     <p ng-show="EditEventForm.description.$error.pattern" class="help-block">Is not allowed (A-Z, a-z, 0-9 only)</p>          
                                 </div>
                             </div>
