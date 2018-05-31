@@ -87,23 +87,23 @@ app.controller('action', function($scope, $rootScope, $http) {
         let valid = true;
         
         if(title == '' || title == null || title == 0){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Title', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
             valid = false;
         }
         if(description == '' || description == null){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Description', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
             valid = false;
         }
         if(className == '' || className == null){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  Tag', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
             valid = false;
         }
         if(start == '' || start == null || start == 0){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  Start Date', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
             valid = false;
         }
         if(end == '' || end == null || end == 0){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Select A  End Date', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
             valid = false;
         }
         if(valid){
