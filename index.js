@@ -1,7 +1,7 @@
 const electron = require("electron");
 const url = require("url");
 const path = require("path");
-const {app,  BrowserWindow, Tray, Menu} = electron;
+const {app,  BrowserWindow, Tray, Menu, MenuItem, ipcMain} = electron;
 
 let mainWindow = null;
 
@@ -73,6 +73,36 @@ function generateTray() {
   ]);
   mainWindow.tray.setContextMenu(mainWindow.trayMenu);
 }
+
+const menu = new Menu();
+
+menu.append(new MenuItem({
+    label: 'Paste',
+    accelerator: 'CommandOrControl+V',
+    role: 'paste',
+}));
+
+menu.append(new MenuItem({ type: 'separator' }));
+menu.append(new MenuItem({
+    label: 'Copy',
+    accelerator: 'CmdOrCtrl+C',
+    click: function () {
+        console.log("hi");
+    }
+}));
+
+app.on('browser-window-created', function (event, win) {
+    win.webContents.on('context-menu', function (e, params) {
+        menu.popup(win, params.x, params.y);
+    });
+});
+
+/*
+ipcMain.on('show-context-menu', function (event) {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    menu.popup(win);
+});
+*/
 
 
 
