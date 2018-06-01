@@ -1,0 +1,25 @@
+From bbde6a63d82b10d0eca5956fd95c0375b669c222 Mon Sep 17 00:00:00 2001
+From: enuser <enuser@gmail.com>
+Date: Thu, 31 May 2018 21:01:18 -0700
+Subject: [PATCH] edit modal className prefilled conflict resolved.
+
+---
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/index.html b/index.html
+index 9ffd408..3e7349f 100644
+--- a/index.html
++++ b/index.html
+@@ -162,7 +162,7 @@
+                             <div class="col-md-12">
+                                 <div class="form-group" ng-class="{ 'has-error' : selectError }">
+                                     <label for="tag" class="modal-label">Tag </label>
+-                                    <select class="form-control" ng-model="EclassName" id="EclassName" ng-change="selectionValidator()" required>
++                                    <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
+                                         <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
+                                     </select>
+                                     <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
+-- 
+2.13.1.windows.1
+
