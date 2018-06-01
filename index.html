@@ -162,7 +162,7 @@
                             <div class="col-md-12">
                                 <div class="form-group" ng-class="{ 'has-error' : selectError }">
                                     <label for="tag" class="modal-label">Tag </label>
-                                    <select class="form-control" ng-model="EclassName" id="EclassName" ng-change="selectionValidator()" required>
+                                    <select class="form-control" ng-model="className" id="className" ng-change="selectionValidator()" required>
                                         <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
                                     </select>
                                     <p ng-if="selectError" class="help-block text-red">Please Select a Tag.</p>
