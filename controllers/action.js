@@ -145,13 +145,19 @@ app.controller('action', function($scope, $rootScope, $http) {
                     center: 'prev title next',
                     right: 'month,basicWeek,basicDay'                
                 },
+                titleRangeSeparator: "-",
                 buttonText: {
-                prev: "",
+                prev: "" ,
                 next: "",
                 today: 'Today',
                 month: 'Month',
                 week: 'Week',
                 day: 'Day'
+                },
+                views: {
+                    week: {
+                        titleFormat: 'MMM D YYYY'
+                    }
                 },
                 defaultDate: moment(),
                 editable: true,
@@ -283,4 +289,8 @@ app.controller('action', function($scope, $rootScope, $http) {
         }
         return false;
     }
+
+    var view = $('#calendar').fullCalendar('getView');
+    console.log("The view's title is " + view.title);
+    
 });
