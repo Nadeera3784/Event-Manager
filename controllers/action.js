@@ -146,6 +146,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                     right: 'month,basicWeek,basicDay'                
                 },
                 titleRangeSeparator: "-",
+                //firstDay: 1, 
                 buttonText: {
                 prev: "" ,
                 next: "",
@@ -156,7 +157,7 @@ app.controller('action', function($scope, $rootScope, $http) {
                 },
                 views: {
                     week: {
-                        titleFormat: 'MMM D YYYY'
+                        titleFormat: 'MMM D'
                     }
                 },
                 defaultDate: moment(),
@@ -290,7 +291,9 @@ app.controller('action', function($scope, $rootScope, $http) {
         return false;
     }
 
-    var view = $('#calendar').fullCalendar('getView');
-    console.log("The view's title is " + view.title);
+    $('.fc-next-button, .fc-prev-button').on('click',function(){
+        var view = $('#calendar').fullCalendar('getView');
+        console.log(view.title);
+    });
     
 });

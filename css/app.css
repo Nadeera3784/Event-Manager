@@ -806,7 +806,7 @@ body.modal {
     border:0 !important
 }
 .fc .fc-view-container .fc-event:focus,.fc .fc-view-container .fc-event:hover,.fc .fc-view-container .fc-event:active {
-    z-index:1000
+    z-index:1000;
 }
 .fc .fc-view-container .fc-event:focus .fc-overlay,.fc .fc-view-container .fc-event:hover .fc-overlay,.fc .fc-view-container .fc-event:active .fc-overlay {
     display:block
