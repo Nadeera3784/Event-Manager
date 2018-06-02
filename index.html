@@ -177,7 +177,7 @@
                                 </div> 
                             </div>
                             <div class="col-sm-6 mb">
-                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.Eend.$invalid && !EditEventForm.Eend.$pristine }">
+                                <div class="form-group" ng-class="{ 'has-error' : EditEventForm.end.$invalid && !EditEventForm.end.$pristine }">
                                     <label for="end" class="modal-label">End </label>
                                     <input type="text" ng-model="end" name="end" class="edit-datepicker form-control" id="end" ng-pattern="/^\d{4}([./-])\d{2}\1\d{2}$/"  required> 
                                     <p ng-show="EditEventForm.end.$dirty && EditEventForm.end.$error.required" class="help-block">End Date is required</p>    
