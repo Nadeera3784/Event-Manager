@@ -5322,23 +5322,19 @@ button.close {
   word-break: normal;
   word-spacing: normal;
   word-wrap: normal;
-  white-space: normal;
-/*  background-color: #fff;
-  -webkit-background-clip: padding-box;
-          background-clip: padding-box;
+  white-space: normal;   
+  background-color: #fff;
+  background-clip: padding-box;
   border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 0px;*/    
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid #e4e9ef;
-    border-radius: 6px;
+  border: 1px solid #e4e9ef;
+  border-radius: 6px;
     
 /*  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
           box-shadow: 0 5px 10px rgba(0, 0, 0, .2);*/
-  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/*  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);*/
+    -webkit-box-shadow: 0 5px 50px rgba(4,123,248,0.3);
+    box-shadow: 0 5px 50px rgba(4,123,248,0.3)
   line-break: auto;  
 }
 .popover.top {
