@@ -1028,3 +1028,6 @@ body.modal {
 .popover-content-date-month{
     color: #9a9a9a;    
 }
+#about{
+    cursor: pointer;
+}

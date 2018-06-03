@@ -295,5 +295,5 @@ app.controller('action', function($scope, $rootScope, $http) {
         var view = $('#calendar').fullCalendar('getView');
         console.log(view.title);
     });
-    
+
 });
