@@ -291,9 +291,9 @@ app.controller('action', function($scope, $rootScope, $http) {
         return false;
     }
 
-    $('.fc-next-button, .fc-prev-button').on('click',function(){
-        var view = $('#calendar').fullCalendar('getView');
-        console.log(view.title);
-    });
+//    $('.fc-next-button, .fc-prev-button').on('click',function(){
+//        var view = $('#calendar').fullCalendar('getView');
+//        console.log(view.title);
+//    });
 
 });
