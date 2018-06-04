@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 /** Options */
 let titlebar = new electronTitlebarWindows({
-    darkMode: true,
+    darkMode: false,
     color: 'rgb(220, 200, 200)',
     backgroundColor: '#1976D2',
     draggable: true,
