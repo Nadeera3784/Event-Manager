@@ -1,6 +1,8 @@
 const {remote} = require('electron');
 const NotificationHelper   = require('./helpers/notification.js');
+const electronTitlebarWindows = require('./js/titlebar.js');
 
+/*
 $(document).ready(function() {
     $('#min-btn').click(function(e) {
         let window = remote.getCurrentWindow();
@@ -25,6 +27,51 @@ $(document).ready(function() {
         window.close();
     });
 });
+*/
+
+/** Options */
+let titlebar = new electronTitlebarWindows({
+    darkMode: true,
+    color: 'rgb(220, 200, 200)',
+    backgroundColor: '#1976D2',
+    draggable: true,
+    fullscreen: false
+});
+
+/**
+     * DOM
+     */
+titlebar.appendTo(document.querySelector('#titlebar'));
+
+
+/** Event#close */
+titlebar.on('close', () => {
+    console.info('close');
+
+    remote.getCurrentWindow().close();
+});
+
+/** Event#fullscreen */
+/*titlebar.on('fullscreen', () => {
+    console.info('fullscreen');
+
+    remote.getCurrentWindow().setFullScreen(true);
+});*/
+
+/** Event#minimize */
+titlebar.on('minimize', () => {
+    console.info('minimize');
+
+    remote.getCurrentWindow().minimize();
+});
+
+/** Event#maximize */
+/*titlebar.on('maximize', () => {
+    console.info('maximize');
+
+    remote.getCurrentWindow().setFullScreen(false);
+    remote.getCurrentWindow().maximize();
+});*/
 
 
 $(document).ready(function() {
