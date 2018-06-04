@@ -17,6 +17,7 @@ body{
     border-radius: 0px;
     box-shadow: none;
 }
+/*
 .panel-default .panel-heading {
     -webkit-app-region: drag;
     background: #1976D2;
@@ -72,6 +73,7 @@ body{
 .panel .panel-heading>.panel-options a[data-toggle=remove] {
     font-size: 18px;
 }
+*/
 
 .panel-menu{
   margin-top: 0px;
@@ -540,7 +542,7 @@ fieldset[disabled] .btn-danger.active {
     overflow: hidden;
     overflow-y: auto;
     left: 0;
-    top: 88px;
+    top: 80px;
     bottom: 0;
     -webkit-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
