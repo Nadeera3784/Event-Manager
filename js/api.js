@@ -21,7 +21,7 @@ api.post('/newEvent', function(req, res) {
         });
         new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
       }else{
-          res.json({'status': 201, 'msg': 'error'});
+          res.json({'status': 304, 'msg': 'Not Modified'});
       }   
     
 });
