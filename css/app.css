@@ -939,54 +939,6 @@ body.modal {
 }
 
 
-.badge {
-    border-radius: 0px;
-    padding: 4px 8px;
-    text-transform: uppercase;
-    font-size: 0.7142em;
-    line-height: 12px;
-    background-color: transparent;
-    border: 1px solid;
-    margin-bottom: 5px;
-}
-
-.badge-icon {
-    padding: 0.4em 0.55em;
-}
-
-.badge-icon i {
-    font-size: 0.8em;
-}
-
-.badge-default {
-    border-color: #888;
-    color: #888;
-}
-
-.badge-primary {
-    border-color: #f96332;
-    color: #f96332;
-}
-
-.badge-info {
-    border-color: #2CA8FF;
-    color: #2CA8FF;
-}
-
-.badge-success {
-    border-color: #18ce0f;
-    color: #18ce0f;
-}
-
-.badge-warning {
-    border-color: #FFB236;
-    color: #FFB236;
-}
-
-.badge-danger {
-    border-color: #FF3636;
-    color: #FF3636;
-}
 
 #nav > div > div.open-panel{
     display: block;
@@ -1007,7 +959,6 @@ body.modal {
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
     color: #fff;
 }
-
 .mb{
   margin-bottom: 20px;   
 }
