@@ -5,7 +5,8 @@ app.controller('action', function($scope, $rootScope, $http) {
         {"value": 'info',"name": "Meeting"},
         {"value": 'important',"name": "Appointment"},
         {"value": 'success',"name": "Travel"},
-        {"value": 'ready',"name": "Busy"}
+        {"value": 'ready',"name": "Busy"},
+		{"value": 'visit',"name": "Visit"}
     ];
         
     $scope.selectionValidator = function(){

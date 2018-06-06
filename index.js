@@ -1,7 +1,7 @@
 const electron = require("electron");
 const url = require("url");
 const path = require("path");
-const {app,  BrowserWindow, Tray, Menu, MenuItem, ipcMain} = electron;
+const {app,  BrowserWindow, Tray, Menu} = electron;
 
 let mainWindow = null;
 
