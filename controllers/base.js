@@ -1,2 +1,2 @@
-let app = angular.module("myApp", []);
+let app = angular.module("myApp", ['ui.bootstrap.contextMenu']);
 

@@ -32,7 +32,7 @@
                         </div>
                              <input type="text" class="form-control form-search" placeholder="Search events..." ng-model="searchkey">
                         <ul class="event-menu">
-                            <li ng-repeat="event in drawerEvents | filter:searchkey">
+							<li ng-repeat="event in drawerEvents | filter:searchkey" context-menu="menuOptions">
                                 <a href="#">
                                     <span class="time"><i class="fa fa-clock-o"></i> {{event.start | time}}</span>
                                     <span class="details">
@@ -204,7 +204,7 @@
                 </div>
             </div>
         </div>
-        
+       
         <!--+++++++++++++++++++++++++++++++++++++++++++++ABOUT MODAL ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -271,5 +271,6 @@
         <script src="directives/tab.js"></script>
         <script src="helpers/ucwords.js"></script>
         <script src="helpers/time.js"></script>
+		<script src="helpers/contextmenu.js"></script>
     </body>
 </html>

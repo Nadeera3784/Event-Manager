@@ -21,7 +21,7 @@ app.on('ready', function(){
         slashes : true
     })); 
     //debug
-    mainWindow.openDevTools();
+    //mainWindow.openDevTools();
     
     mainWindow.on('closed', () => {
         mainWindow = null;

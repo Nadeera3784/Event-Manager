@@ -2724,7 +2724,7 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 0 0;
   margin: 2px 0 0;
   font-size: 14px;
   text-align: left;
@@ -2732,11 +2732,11 @@ tbody.collapse.in {
   background-color: #fff;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	border: 1px solid #ccc;
+	border: 1px solid #e4e9ef;
+	-webkit-box-shadow: 0 5px 50px rgba(4,123,248,0.3);
+	box-shadow: 0 5px 50px rgba(4,123,248,0.3)	
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -2750,11 +2750,11 @@ tbody.collapse.in {
 }
 .dropdown-menu > li > a {
   display: block;
-  padding: 3px 20px;
+  padding: 12px 20px;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333;
+  color: linear-gradient(45deg, #279BFF, #72DEFF);
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
