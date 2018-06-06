@@ -28,7 +28,17 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 		['<i class="fa fa-send"></i> &nbsp;&nbsp; Send', function ($itemScope) {
 			new NotificationHelper.NotificationHelpers().error('Sorry, This function not available..', 2);
 		}]
-	]
+	];
+	
+
+	$scope.otherMenuOptions = [
+		['Copy', function ($itemScope, event, modelValue, text, $li) {
+			console.info($itemScope.title);
+		}],
+		['Paste', function ($itemScope, event, modelValue, text, $li) {
+			console.info($itemScope.title);
+		}]
+	];
 	
     $scope.newEvent = function(){
         
