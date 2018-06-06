@@ -1,4 +1,4 @@
-app.controller('action', function($scope, $rootScope, $http) {
+app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) {
     
     $scope.optionlist = [
         {"value": 'chill', "name": "Office"},
@@ -21,6 +21,15 @@ app.controller('action', function($scope, $rootScope, $http) {
         angular.element('#new-modal').modal('show');
     }
     
+	$scope.menuOptions = [
+		['<i class="fa fa-trash"></i> &nbsp;&nbsp; Delete', function ($itemScope) {
+			$scope.deleteEvent($itemScope.event.id);
+		}],
+		['<i class="fa fa-send"></i> &nbsp;&nbsp; Send', function ($itemScope) {
+			new NotificationHelper.NotificationHelpers().error('Sorry, This function not available..', 2);
+		}]
+	]
+	
     $scope.newEvent = function(){
         
         let title       =  $scope.title;
