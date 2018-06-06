@@ -72,7 +72,7 @@
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.title.$invalid && !EventForm.title.$pristine }">
                                     <label for="title" class="modal-label">Title </label>
                                     <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12"
-										   ng-pattern="/^[a-z-0-9][a-z0-9_\./>]{0,24}$/i"  context-menu="otherMenuOptions" context-menu-on="contextmenu" required>
+										   ng-pattern="/^[a-z-0-9][a-z0-9_\./>]{0,24}$/i"  context-menu="otherMenuOptions" context-menu-on="contextmenu" ng-copy="copied=false" required>
                                     <p ng-show="EventForm.title.$dirty && EventForm.title.$error.required" class="help-block">Title is required</p>
                                     <p ng-show="EventForm.title.$error.minlength" class="help-block">Must have minimum 2 characters</p>
                                     <p ng-show="EventForm.title.$error.maxlength" class="help-block">Maximum number of characters exceeded</p>

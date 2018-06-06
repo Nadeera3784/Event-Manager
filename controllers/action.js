@@ -33,7 +33,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 
 	$scope.otherMenuOptions = [
 		['Copy', function ($itemScope, event, modelValue, text, $li) {
-			console.info($itemScope.title);
+			$scope.copied = true;
 		}],
 		['Paste', function ($itemScope, event, modelValue, text, $li) {
 			console.info($itemScope.title);

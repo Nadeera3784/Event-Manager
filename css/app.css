@@ -817,8 +817,8 @@ body.modal {
     border:0;
     background-color:#f2f7fa;
     padding:10px;
-    color:#000;
-    font-size:12px;
+	color:#697D8D;
+    font-size:15px;
     font-weight:normal
 }
 .fc .fc-view-container .fc-view.fc-basic-view>table>thead tr td.fc-widget-header,.fc .fc-view-container .fc-view.fc-agenda>table>thead tr td.fc-widget-header {
