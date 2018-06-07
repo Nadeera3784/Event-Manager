@@ -78,9 +78,9 @@ class TitleBar extends EventEmitter {
         }
 
         // Add click events
-        this.titlebarElement.addEventListener('dblclick', event => this.onDoubleclick(event));
+        //this.titlebarElement.addEventListener('dblclick', event => this.onDoubleclick(event));
         this.minimizeButton.addEventListener('click', event => this.clickMinimize(event));
-        this.resizeButton.addEventListener('click', event => this.clickResize(event));
+        //this.resizeButton.addEventListener('click', event => this.clickResize(event));
         this.closeButton.addEventListener('click', event => this.clickClose(event));
     }
 
@@ -94,32 +94,32 @@ class TitleBar extends EventEmitter {
      * @fires TitleBar#EventEmitter:maximize
      * @fires TitleBar#EventEmitter:fullscreen
      */
-    clickResize() {
-        // Resize to Maximize
-        if (this.options.fullscreen) {
-            this.titlebarElement.classList.remove('fullscreen');
-            this.emit('maximize');
-        }
-
-        // Resize to Fullscreen
-        if (!this.options.fullscreen) {
-            this.titlebarElement.classList.add('fullscreen');
-            this.emit('fullscreen');
-        }
-
-        // Store
-        this.options.fullscreen = !this.options.fullscreen;
-    };
+//    clickResize() {
+//        // Resize to Maximize
+//        if (this.options.fullscreen) {
+//            this.titlebarElement.classList.remove('fullscreen');
+//            this.emit('maximize');
+//        }
+//
+//        // Resize to Fullscreen
+//        if (!this.options.fullscreen) {
+//            this.titlebarElement.classList.add('fullscreen');
+//            this.emit('fullscreen');
+//        }
+//
+//        // Store
+//        this.options.fullscreen = !this.options.fullscreen;
+//    };
 
     /**
      * @param {Event} event - Event
      * @fires TitleBar#EventEmitter:close
      */
-    onDoubleclick(event) {
-        if (!(this.minimizeButton.contains(event.target) || this.resizeButton.contains(event.target) || this.closeButton.contains(event.target))) {
-            this.clickResize(event);
-        }
-    };
+//    onDoubleclick(event) {
+//        if (!(this.minimizeButton.contains(event.target) || this.resizeButton.contains(event.target) || this.closeButton.contains(event.target))) {
+//            this.clickResize(event);
+//        }
+//    };
 
     /**
      * Add to DOM
@@ -135,7 +135,7 @@ class TitleBar extends EventEmitter {
         // Option: color
         if (this.options.color) {
             this.titlebarElement.querySelector('rect').style.fill = this.options.color;
-            this.titlebarElement.querySelector('path').style.fill = this.options.color;
+            //this.titlebarElement.querySelector('path').style.fill = this.options.color;
             this.titlebarElement.querySelector('polygon').style.fill = this.options.color;
         }
 
