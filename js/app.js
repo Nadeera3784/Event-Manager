@@ -1,7 +1,6 @@
 const {remote} = require('electron');
 const NotificationHelper   = require('./helpers/notification.js');
 const electronTitlebarWindows = require('./js/titlebar.js');
-
 /*
 $(document).ready(function() {
     $('#min-btn').click(function(e) {
