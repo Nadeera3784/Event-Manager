@@ -841,7 +841,7 @@ body.modal {
 .fc .fc-view-container .fc-view.fc-basic-view>table tbody tr td.fc-day-number.fc-state-highlight,.fc .fc-view-container .fc-view.fc-agenda>table tbody tr td.fc-day-number.fc-state-highlight {
     background-color:#2196f3;
     color:#fff;
-    box-shadow: 0 0 0 5px #f5f5f6;
+	box-shadow: 0 0 0 5px #EAEDFC;
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
     -ms-border-radius:50%;
