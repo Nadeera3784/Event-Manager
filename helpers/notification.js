@@ -45,16 +45,17 @@ var NotificationHelpers = (function () {
 	
 	NotificationHelpers.prototype.input = function (callback, subcallback) {
 		Noty.input({
-			text: 'Please enter recipient email address',
+			text: 'Please Enter Recipient Email Address',
 			cancelCallback: function (value) {
 				callback(value);
 			},
 			submitCallback: function (value) {
 				subcallback(value);
 			},
-			type: 'text',
+			type: 'email',
 			placeholder: 'name@example.com',
-			spellcheck: 'true'
+			spellcheck: 'true',
+			allowed: new RegExp('^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$')
 		});        
 	};  
     return NotificationHelpers;

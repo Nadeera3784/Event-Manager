@@ -27,9 +27,9 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 		}],
 		['<i class="fa fa-send"></i> &nbsp;&nbsp; Send', function ($itemScope) {
 			new NotificationHelper.NotificationHelpers().input(function(value){
-				new NotificationHelper.NotificationHelpers().error('not send', 2);
+				new NotificationHelper.NotificationHelpers().error('Event Could Be Sent', 2);
 			}, function (value){
-				new NotificationHelper.NotificationHelpers().success('send' + value , 2);
+				new NotificationHelper.NotificationHelpers().success('Event Has Been Sent To ' + value , 2);
 			});
 		}]
 	];
@@ -56,7 +56,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         let valid = true;
 
         if(title == '' || title == null || title == 0){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
+            new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Title', 2);
             valid = false;
         }else if(title != title.match(/^[a-z-0-9][a-z0-9_\ ./>]{1,12}$/i)){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 2 characters', 2);
