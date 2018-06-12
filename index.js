@@ -9,6 +9,18 @@ let logo = path.join(__dirname, 'images', 'logo.png');
 
 process.env.NODE_ENV = 'development';
 
+const shouldQuit = app.makeSingleInstance(() => {
+	if(mainWindow) {
+		if(mainWindow.isMinimized()) mainWindow.restore();
+		mainWindow.show();
+		mainWindow.focus();
+	}
+});
+
+if (shouldQuit) {
+	app.quit();
+}
+
 app.on('ready', function(){
     
     Windowfactory(800, 850);
