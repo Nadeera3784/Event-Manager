@@ -9,7 +9,7 @@ let logo = path.join(__dirname, 'images', 'logo.png');
 
 process.env.NODE_ENV = 'development';
 
-const shouldQuit = app.makeSingleInstance(() => {
+const shouldQuit = app.makeSingleInstance(function(){
 	if(mainWindow) {
 		if(mainWindow.isMinimized()) mainWindow.restore();
 		mainWindow.show();

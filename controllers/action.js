@@ -26,7 +26,11 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 			$scope.deleteEvent($itemScope.event.id);
 		}],
 		['<i class="fa fa-send"></i> &nbsp;&nbsp; Send', function ($itemScope) {
-			new NotificationHelper.NotificationHelpers().error('Sorry, This function not available..', 2);
+			new NotificationHelper.NotificationHelpers().input(function(value){
+				new NotificationHelper.NotificationHelpers().error('not send', 2);
+			}, function (value){
+				new NotificationHelper.NotificationHelpers().success('send' + value , 2);
+			});
 		}]
 	];
 	

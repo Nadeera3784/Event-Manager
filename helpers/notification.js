@@ -42,6 +42,21 @@ var NotificationHelpers = (function () {
             }            
         });        
     };    
+	
+	NotificationHelpers.prototype.input = function (callback, subcallback) {
+		Noty.input({
+			text: 'Please enter recipient email address',
+			cancelCallback: function (value) {
+				callback(value);
+			},
+			submitCallback: function (value) {
+				subcallback(value);
+			},
+			type: 'text',
+			placeholder: 'name@example.com',
+			spellcheck: 'true'
+		});        
+	};  
     return NotificationHelpers;
 }());
 exports.NotificationHelpers = NotificationHelpers;
