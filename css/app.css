@@ -286,6 +286,7 @@ fieldset[disabled] .btn-info.active {
 .btn-info-outline:active:focus{
     background-color: #4bb5ff;
     color: #FFFFFF;
+	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
 }
 .btn-warning {
     background-color: #FFB236;
@@ -498,11 +499,13 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .nav-active #nav .nav-drop {
-    webkit-box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2), 0px 2px 30px 0 rgba(0, 0, 0, 0.35);
+    --webkit-box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2), 0px 2px 30px 0 rgba(0, 0, 0, 0.35);
     box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2), 0px 2px 30px 0 rgba(0, 0, 0, 0.35);    
     -webkit-transform: none;
     -ms-transform: none;
-    transform: none;     
+    transform: none; 
+	border-bottom: 1px solid #0fabe8;
+	border-left: 1px solid #0fabe8;
 }
 #nav .nav-opener {
     display: block;
@@ -544,7 +547,6 @@ fieldset[disabled] .btn-danger.active {
 .nav-active #nav .nav-opener span {
     opacity: 0;
 }
-
 .drawer-header{
   padding: 10px 0 10px  10px;
   background: #2196F3;   
@@ -932,3 +934,54 @@ body.modal {
 #about{
     cursor: pointer;
 }
+/*.bootstrap-select {
+	box-shadow:none !important;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	-ms-border-radius:0;
+	border-radius:0
+}
+.bootstrap-select .dropdown-toggle:focus,.bootstrap-select .dropdown-toggle:active {
+	outline:none !important
+}
+.bootstrap-select .btn.btn-round.btn-simple .filter-option {
+	font-size:14px
+}
+.bootstrap-select .bs-searchbox,.bootstrap-select .bs-actionsbox,.bootstrap-select .bs-donebutton {
+	padding:0 0 5px 0;
+	border-bottom:1px solid #eee
+}
+.bootstrap-select .bs-searchbox {
+	position:relative;
+	padding:10px
+}
+.bootstrap-select .bs-searchbox:after {
+	content:'\f1c3';
+	font-family:'Material-Design-Iconic-Font';
+	position:absolute;
+	top:14px;
+	right:20px;
+	font-size:20px
+}
+.bootstrap-select ul.dropdown-menu {
+	margin-top:0 !important
+}
+.bootstrap-select .dropdown-menu li.selected a {
+	background-color:#eee !important;
+	color:#555 !important
+}
+.bootstrap-select .dropdown-menu .active a {
+	background-color:transparent;
+	color:#333 !important
+}
+.bootstrap-select .dropdown-menu .notify {
+	background-color:#F44336 !important;
+	color:#fff !important;
+	border:none !important
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+	margin-top:9px
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu.inner {
+	display:block
+}*/

@@ -35,6 +35,8 @@ $(document).ready(function() {
 		autohidemode: true,
 		zindex: 999
 	});
+	
+	//$("select:not(.ms)").selectpicker();
 });
 
 $(document).ready(function() {

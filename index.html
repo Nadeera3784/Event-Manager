@@ -80,7 +80,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group" ng-class="{ 'has-error' : selectError }">
                                     <label for="tag" class="modal-label">Tag </label>
-                                    <select class="form-control" ng-model="className" ng-change="selectionValidator()" required>
+									<select class="form-control" ng-model="className" ng-change="selectionValidator()" required>
                                         <option value="">Please Select...</option>
                                         <option ng-repeat="option in optionlist" value="{{option.value}}">{{option.name}}</option>
                                     </select>
