@@ -23,7 +23,7 @@ if (shouldQuit) {
 
 app.on('ready', function(){
     
-    Windowfactory(800, 850);
+    windowFactory(800, 850);
     
     generateTray();
     
@@ -52,16 +52,19 @@ app.on('activate', () => {
   }
 });
 
-function Windowfactory(width, height){
+function windowFactory(width, height){
     
     //const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
     mainWindow = new BrowserWindow({
-        icon: logo,
-        width: width,
-        height: height,
-        transparent: true,
-        frame: false,
-        resizable: false
+		title       : 'Event Manager',
+        icon        : logo,
+        width       : width,
+        height      : height,
+		minWidth    : width,
+		minHeight   : height,
+        transparent : false,
+        frame       : false,
+        resizable   : false
     });
 }
 
@@ -85,7 +88,6 @@ function generateTray() {
   ]);
   mainWindow.tray.setContextMenu(mainWindow.trayMenu);
 }
-
 
 
 
