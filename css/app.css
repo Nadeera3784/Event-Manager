@@ -17,64 +17,6 @@ body{
     border-radius: 0px;
     box-shadow: none;
 }
-/*
-.panel-default .panel-heading {
-    -webkit-app-region: drag;
-    background: #1976D2;
-    color: #FFFFFF;
-    border-radius: 0; 
-    padding-top: 15px;
-    padding-bottom: 25px;
-    border-bottom: none;
-}
-
-.panel .panel-heading>.panel-options {
-    float: right;
-    font-size: 13px;
-}
-#title-bar {
-	height: 32px;	
-	padding: 0px;
-    margin: 0px;  
-	color: #b7dcea;
-	font-family: sans-serif;
-}
-#title-bar-btns {
-	-webkit-app-region: no-drag;
-	position: fixed;
-	top: 5px;
-	right: 5px;	
-}
-
-#title-bar-btns button {
-	height: 32px;
-	width: 32px;
-	background-color: transparent;
-	border: none;
-	color: #b7dcea;
-	font-size: 16px;
-}
-
-
-#title-bar-btns button:hover {
-	background-color: #0fabe8;
-}
-
-.panel .panel-heading>.panel-options a:first-child {
-    margin-left: 0;
-}
-.panel .panel-heading>.panel-options a {
-    display: inline-block;
-    color: #FFF;
-    margin-left: 7px;
-    line-height: 1;
-    text-decoration: none;
-}
-.panel .panel-heading>.panel-options a[data-toggle=remove] {
-    font-size: 18px;
-}
-*/
-
 .panel-menu{
   margin-top: 0px;
   padding: 15px 15px;
