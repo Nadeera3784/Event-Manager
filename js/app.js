@@ -31,7 +31,7 @@ $(document).ready(function() {
 	
 	$("#event-scroller").niceScroll({
 		cursorwidth: '5px',
-		cursorcolor: "#AEC6D2",
+		cursorcolor: "#72DEFF",
 		autohidemode: true,
 		zindex: 999
 	});
