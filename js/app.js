@@ -1,34 +1,7 @@
 const {remote} = require('electron');
 const NotificationHelper   = require('./helpers/notification.js');
 const electronTitlebarWindows = require('./js/titlebar.js');
-/*
-$(document).ready(function() {
-    $('#min-btn').click(function(e) {
-        let window = remote.getCurrentWindow();
-        window.minimize();
-    });
-});
 
-$(document).ready(function() {
-    $('#max-btn').click(function(e) {
-        let window = remote.getCurrentWindow();
-        if (!window.isMaximized()) {
-            window.maximize();
-        } else {
-            window.unmaximize();
-        }
-    });
-});
-
-$(document).ready(function() {
-    $('#close-btn').click(function(e) {
-        let window = remote.getCurrentWindow();
-        window.close();
-    });
-});
-*/
-
-/** Options */
 let titlebar = new electronTitlebarWindows({
     darkMode: false,
     color: 'rgb(220, 200, 200)',
@@ -37,41 +10,19 @@ let titlebar = new electronTitlebarWindows({
     fullscreen: false
 });
 
-/**
-     * DOM
-     */
 titlebar.appendTo(document.querySelector('#titlebar'));
 
-
-/** Event#close */
 titlebar.on('close', () => {
     console.info('close');
 
     remote.getCurrentWindow().close();
 });
 
-/** Event#fullscreen */
-/*titlebar.on('fullscreen', () => {
-    console.info('fullscreen');
-
-    remote.getCurrentWindow().setFullScreen(true);
-});*/
-
-/** Event#minimize */
 titlebar.on('minimize', () => {
     console.info('minimize');
 
     remote.getCurrentWindow().minimize();
 });
-
-/** Event#maximize */
-/*titlebar.on('maximize', () => {
-    console.info('maximize');
-
-    remote.getCurrentWindow().setFullScreen(false);
-    remote.getCurrentWindow().maximize();
-});*/
-
 
 $(document).ready(function() {
     $('#about').click(function() {
