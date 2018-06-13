@@ -7,7 +7,7 @@ const defaultCss = require('defaultcss');
 const domify = require('domify');
 
 const titlebarStylesheet = fs.readFileSync(path.join(__dirname, '..', 'css', 'titlebar.css'), 'utf-8');
-const titlebarView = fs.readFileSync(path.join(__dirname, '..', 'html', 'titlebar.html'), 'utf-8');
+const titlebarView = fs.readFileSync(path.join(__dirname, '..', 'templates', 'titlebar.html'), 'utf-8');
 
 class TitleBar extends EventEmitter {
     constructor(options = {}) {
