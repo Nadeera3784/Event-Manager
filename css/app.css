@@ -556,6 +556,11 @@ fieldset[disabled] .btn-danger.active {
     padding-right: 0 !important;
     padding-left: 0;
     list-style: none;
+	max-height: 686px;
+	position: relative;
+	flex: 1;
+	overflow-x: hidden;
+	overflow-y: auto;	
 }
 .event-menu>li{
     /*border-bottom: 0.5px solid #e5eaee; */

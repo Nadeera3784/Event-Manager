@@ -76,7 +76,14 @@ titlebar.on('minimize', () => {
 $(document).ready(function() {
     $('#about').click(function() {
         $('#about-modal').modal('show');
-    })
+    });
+	
+	$("#event-scroller").niceScroll({
+		cursorwidth: '5px',
+		cursorcolor: "#AEC6D2",
+		autohidemode: true,
+		zindex: 999
+	});
 });
 
 $(document).ready(function() {
