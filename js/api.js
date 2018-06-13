@@ -10,6 +10,7 @@ api.set('port', process.env.PORT || 3000);
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({extended: false}));
 
+api.disable('x-powered-by');
 
 //Create
 api.post('/newEvent', function(req, res) {
