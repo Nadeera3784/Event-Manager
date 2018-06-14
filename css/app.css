@@ -1110,3 +1110,8 @@ body.modal {
 .switch.checked small {
 	left: 22px;
 }
+.day-state{
+	float: left;
+	padding-right: 20px;
+	padding-top: 5px;
+}
