@@ -1,5 +1,6 @@
-const {remote} = require('electron');
-const NotificationHelper   = require('./helpers/notification.js');
+const {remote}                = require('electron');
+const NotificationHelper      = require('./helpers/notification.js');
+const SanitizeHelper          = require('./helpers/sanitizer.js');
 const electronTitlebarWindows = require('./js/titlebar.js');
 
 let titlebar = new electronTitlebarWindows({
