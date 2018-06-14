@@ -55,7 +55,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         
         let valid = true;
 
-        if(title == '' || title == null || title == 0){
+		if(title == '' || title == null || title.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please Enter A  Title', 2);
             valid = false;
         }else if(title != title.match(/^[a-z-0-9][a-z0-9_\ ./>]{1,12}$/i)){
@@ -73,11 +73,11 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
             valid = false;
         }
-        if(start == '' || start == null || start == 0){
+		if(start == '' || start == null || start.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
             valid = false;
         }
-        if(end == '' || end == null || end == 0){
+		if(end == '' || end == null || end.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
             valid = false;
         }
@@ -125,7 +125,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         
         let valid = true;
         
-        if(title == '' || title == null || title == 0){
+		if(title == '' || title == null || title.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  title', 2);
             valid = false;
         }else if(title != title.match(/^[a-z-0-9][a-z0-9_\. />]{1,12}$/i)){
@@ -143,11 +143,11 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select a  tag', 2);
             valid = false;
         }
-        if(start == '' || start == null || start == 0){
+		if(start == '' || start == null || start.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  start date', 2);
             valid = false;
         }
-        if(end == '' || end == null || end == 0){
+		if(end == '' || end == null || end.length < 0){
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please select s  end date', 2);
             valid = false;
         }
