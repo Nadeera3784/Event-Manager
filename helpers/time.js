@@ -10,3 +10,13 @@ app.filter('time', function() {
         }
     }
 });
+
+app.filter('changed', function() {
+	return function(bool) {
+		if(bool == true){
+		   return 'Sunday';
+		 }else{
+		   return 'Monday';
+		 }
+	}
+});
