@@ -38,7 +38,10 @@
 
                 <button class="btn btn-info-outline" id="btn-new-events" ng-click="addModal()" data-toggle="tooltip" data-placement="top" title="Create a New Event"><i class="fa fa-plus-circle"></i> New Event</button> 
                 &nbsp;
-                <button class="btn btn-warning" id="trash" data-toggle="tooltip" data-placement="top" title="Drag Events Here to Delete"><i class="fa fa-trash-o"></i> Delete Bucket</button>                              
+                <button class="btn btn-warning" id="trash" data-toggle="tooltip" data-placement="top" title="Drag Events Here to Delete"><i class="fa fa-trash-o"></i> Delete Bucket</button>
+				<div class="pull-right">
+					<switch ng-model="switchsetting" class="green"></switch>
+				</div>                              
                 <br><br>
                 <div id="calendar"></div> 
             </div>
@@ -306,6 +309,7 @@
         <script src="controllers/base.js"></script>
         <script src="controllers/action.js"></script>
         <script src="directives/tab.js"></script>
+		<script src="directives/ui-switch.js"></script>
         <script src="helpers/ucwords.js"></script>
         <script src="helpers/time.js"></script>
 		<script src="helpers/contextmenu.js"></script>
