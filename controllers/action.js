@@ -46,8 +46,8 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	
 	
     $scope.newEvent = function(){
-        
-        let title       =  $scope.title;
+		
+		let title       =  $scope.title;
         let description =  $scope.description;
         let className   =  $scope.className;
         let start       =  $scope.start;
@@ -82,7 +82,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
             valid = false;
         }
         if(valid){
-            $http.post('http://localhost:3000/newEvent', {params: {title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+			$http.post('http://localhost:3000/newEvent', {params: {title: new SanitizeHelper.SanitizeHelpers().charScape(title), description: new SanitizeHelper.SanitizeHelpers().charScape(description), start: start, end: end, className: className}}).then(function (httpResponse) {
                 if (httpResponse.data.status === 200) {
                     $('#calendar').fullCalendar("refetchEvents");
                     new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
@@ -118,11 +118,11 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         
         let id           = angular.element('#edit-modal #id').val();
         let description  = angular.element('#edit-modal #description').val();
-        let title        = angular.element('#edit-modal #title').val();
+		let title        = angular.element('#edit-modal #title').val();
         let className    = angular.element('#edit-modal #className').val(); 
         let start        = angular.element('#edit-modal #start').val();
         let end          = angular.element('#edit-modal #end').val();
-        
+
         let valid = true;
         
 		if(title == '' || title == null || title.length < 0){
@@ -152,7 +152,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
             valid = false;
         }
         if(valid){
-            $http.post('http://localhost:3000/updateEvents', {params: {id: id, title: title, description: description, start: start, end: end, className: className}}).then(function (httpResponse) {
+			$http.post('http://localhost:3000/updateEvents', {params: {id: id, title: new SanitizeHelper.SanitizeHelpers().charScape(title), description: new SanitizeHelper.SanitizeHelpers().charScape(description), start: start, end: end, className: className}}).then(function (httpResponse) {
                 if (httpResponse.data.status === 200) {
                     $('#calendar').fullCalendar("refetchEvents");
                     new NotificationHelper.NotificationHelpers().success('Congrats! Your Event Was Updated Successfully!', 2);
