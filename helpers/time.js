@@ -14,9 +14,9 @@ app.filter('time', function() {
 app.filter('switcherState', function() {
 	return function(bool) {
 		if(bool == true){
-		   return 'Sunday';
+			return 'Monday';
 		 }else{
-		   return 'Monday';
+			return 'Sunday';
 		 }
 	}
 });
