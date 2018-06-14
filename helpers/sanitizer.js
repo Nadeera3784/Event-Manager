@@ -1,5 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
+const crypto = require('crypto');
+
 let SanitizeHelpers = (function () {
 	function SanitizeHelpers() {
 	}
@@ -27,6 +29,21 @@ let SanitizeHelpers = (function () {
 		 }
 	};
 	
+	SanitizeHelpers.prototype.encrypt = function (str) {
+		const cipher = crypto.createCipher('aes192', '32C8A5A563F7EE8A01AC4EA062528763215FAB398837212762C3F2CF4FE57A99');
+		let encrypted = cipher.update(str, 'utf8', 'hex');
+		encrypted += cipher.final('hex');
+		return encrypted;
+	};
+	
+	SanitizeHelpers.prototype.decrypt = function (str) {
+		const decipher = crypto.createDecipher('aes192', '32C8A5A563F7EE8A01AC4EA062528763215FAB398837212762C3F2CF4FE57A99');
+		const encrypted = str;
+		let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+		decrypted += decipher.final('utf8');
+		return decrypted;
+	};
+
 	return SanitizeHelpers;
 }());
 exports.SanitizeHelpers = SanitizeHelpers;
