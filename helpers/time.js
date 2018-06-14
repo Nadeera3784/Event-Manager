@@ -11,7 +11,7 @@ app.filter('time', function() {
     }
 });
 
-app.filter('changed', function() {
+app.filter('switcherState', function() {
 	return function(bool) {
 		if(bool == true){
 		   return 'Sunday';
