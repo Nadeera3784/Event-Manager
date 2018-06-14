@@ -29,7 +29,13 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 			new NotificationHelper.NotificationHelpers().input(function(value){
 				new NotificationHelper.NotificationHelpers().error('Event Could Be Sent', 2);
 			}, function (value){
-				new NotificationHelper.NotificationHelpers().success('Event Has Been Sent To ' + value , 2);
+				
+				let subject = $itemScope.event.title;
+				let text = $itemScope.event.description;
+	
+				new MailHelper.MailHelpers().send(value, subject, text).then(function (response){
+					new NotificationHelper.NotificationHelpers().success(response , 2);
+				});
 			});
 		}]
 	];
