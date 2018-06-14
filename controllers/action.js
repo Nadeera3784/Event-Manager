@@ -326,5 +326,10 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 //        var view = $('#calendar').fullCalendar('getView');
 //        console.log(view.title);
 //    });
+	
+	$scope.switchsetting = false;
 
+	$scope.$watch('switchsetting', function(newNames, oldNames) {
+		console.log(newNames);
+	});
 });
