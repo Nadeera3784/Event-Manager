@@ -2,7 +2,6 @@ const electron = require("electron");
 const url = require("url");
 const path = require("path");
 const {app,  BrowserWindow, Tray, Menu} = electron;
-
 let mainWindow = null;
 
 let logo = path.join(__dirname, 'images', 'logo.png');
@@ -22,7 +21,7 @@ if (shouldQuit) {
 }
 
 app.on('ready', function(){
-    
+    	
     windowFactory(800, 850);
     
     generateTray();
