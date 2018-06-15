@@ -177,7 +177,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     right: 'month,basicWeek,basicDay'                
                 },
                 titleRangeSeparator: "-",
-		        //firstDay: 1, 
+		        //firstDay: 0, 
                 buttonText: {
                 prev: "" ,
                 next: "",
@@ -321,6 +321,8 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         }
         return false;
     }
+	
+	//$("#calendar").fullCalendar('option', 'firstDay', 1);
 
 /*    $('.fc-next-button, .fc-prev-button').on('click',function(){
         var view = $('#calendar').fullCalendar('getView');
@@ -330,8 +332,10 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	$http.get('http://localhost:3000/getSwitch').then(function successCallback(response) {
 		if(response.data[0].switch_state != 0){
 			$scope.switchsetting = true;
+			//$('#calendar').fullCalendar('option', 'firstDay', 1);
 		}else{
 			$scope.switchsetting = false;
+			//$('#calendar').fullCalendar('option', 'firstDay', 0);
 		}
 
 	}, function errorCallback(response) {
@@ -340,7 +344,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 
 
 	$scope.$watch('switchsetting', function(newNames, oldNames) {
-		console.log(newNames);
+		console.log($scope.switchsetting);
 	});
 	
 
