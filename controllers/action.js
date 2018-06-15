@@ -29,12 +29,20 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 			new NotificationHelper.NotificationHelpers().input(function(value){
 				new NotificationHelper.NotificationHelpers().error('Event Could Be Sent', 2);
 			}, function (value){
-				
-				let subject = $itemScope.event.title;
-				let text = $itemScope.event.description;
-	
-				new MailHelper.MailHelpers().send(value, subject, text).then(function (response){
-					new NotificationHelper.NotificationHelpers().success(response , 2);
+				$http.get('http://localhost:3000/getMailconfig').then(function successCallback(response) {
+					if(response.data.length > 0){
+						let subject = $itemScope.event.title;
+						let text = $itemScope.event.description;
+
+						new MailHelper.MailHelpers().send(value, subject, text).then(function (response){
+							new NotificationHelper.NotificationHelpers().success(response , 2);
+						});
+					}else{
+						new NotificationHelper.NotificationHelpers().warning('config not found', 2);
+					}
+
+				}, function errorCallback(response) {
+					console.log(response);
 				});
 			});
 		}]
@@ -177,7 +185,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     right: 'month,basicWeek,basicDay'                
                 },
                 titleRangeSeparator: "-",
-		        //firstDay: 0, 
+				//firstDay: 0, 
                 buttonText: {
                 prev: "" ,
                 next: "",
@@ -205,7 +213,6 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     success: function(response) {
                         $scope.drawerEvents = response;
                         $scope.$apply();
-                        //angular.element('.fc-center').find('h2').attr('ng-model', 'currmonth');
                     },
                 },
                 select: function(start, end) {
@@ -332,20 +339,18 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	$http.get('http://localhost:3000/getSwitch').then(function successCallback(response) {
 		if(response.data[0].switch_state != 0){
 			$scope.switchsetting = true;
-			//$('#calendar').fullCalendar('option', 'firstDay', 1);
+			$('#calendar').fullCalendar('option', 'firstDay', 1);
 		}else{
 			$scope.switchsetting = false;
-			//$('#calendar').fullCalendar('option', 'firstDay', 0);
+			$('#calendar').fullCalendar('option', 'firstDay', 0);
 		}
 
 	}, function errorCallback(response) {
 		console.log(response);
 	});
-
-
+	
 	$scope.$watch('switchsetting', function(newNames, oldNames) {
 		console.log($scope.switchsetting);
 	});
 	
-
 });
