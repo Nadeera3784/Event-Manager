@@ -6,19 +6,19 @@ let MailHelpers = (function () {
 	function MailHelpers() {
 	}
 
-	MailHelpers.prototype.send = function (value, subject, text) {
+	MailHelpers.prototype.send = function (value, subject, text, username, password) {
 		return new Promise(function(resolve, reject) {
 			let smtpTransport = mailer.createTransport({
 				service: "gmail",
 				host:'smtp.gmail.com',
 				auth: {
-					user: "gmail_id@gmail.com",
-					pass: "gmail_password"
+					user: username,
+					pass: password
 				}
 			});
 
 			let mail = {
-				from: "Yashwant Chavan <from@gmail.com>",
+				from: username,
 				to: value,
 				subject: subject,
 				text: text
