@@ -177,7 +177,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     right: 'month,basicWeek,basicDay'                
                 },
                 titleRangeSeparator: "-",
-                //firstDay: 1, 
+		        //firstDay: 1, 
                 buttonText: {
                 prev: "" ,
                 next: "",
@@ -322,14 +322,26 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         return false;
     }
 
-//    $('.fc-next-button, .fc-prev-button').on('click',function(){
-//        var view = $('#calendar').fullCalendar('getView');
-//        console.log(view.title);
-//    });
+/*    $('.fc-next-button, .fc-prev-button').on('click',function(){
+        var view = $('#calendar').fullCalendar('getView');
+        console.log(view.title);
+    });*/
 	
-	$scope.switchsetting = false;
+	$http.get('http://localhost:3000/getSwitch').then(function successCallback(response) {
+		if(response.data[0].switch_state != 0){
+			$scope.switchsetting = true;
+		}else{
+			$scope.switchsetting = false;
+		}
+
+	}, function errorCallback(response) {
+		console.log(response);
+	});
+
 
 	$scope.$watch('switchsetting', function(newNames, oldNames) {
 		console.log(newNames);
 	});
+	
+
 });
