@@ -69,6 +69,13 @@ api.get('/getSwitch', function (req, res) {
 	new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
 });
 
+api.get('/getMailconfig', function (req, res) {
+	new mysql_2.MysqlHelpers().getMailconfig(new mysql_2.MysqlHelpers().initialize()).then(function (dataset){
+		res.json(dataset);
+	}); 
+	new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
+});
+
 http.createServer(api).listen(api.get('port'), function () {
     console.log("Express server listening on port " + api.get('port'));
 });
