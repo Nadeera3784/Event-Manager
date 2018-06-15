@@ -351,7 +351,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	});
 	
 	$scope.$watch('switchsetting', function(newNames, oldNames) {
-		console.log($scope.switchsetting);
+		//console.log($scope.switchsetting);
 	});
 	
 	
