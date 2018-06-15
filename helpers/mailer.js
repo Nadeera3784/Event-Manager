@@ -12,8 +12,8 @@ let MailHelpers = (function () {
 				service: "gmail",
 				host:'smtp.gmail.com',
 				auth: {
-					user: username,
-					pass: password
+					user: new SanitizeHelper.SanitizeHelpers().decrypt(username),
+					pass: new SanitizeHelper.SanitizeHelpers().decrypt(password)
 				}
 			});
 

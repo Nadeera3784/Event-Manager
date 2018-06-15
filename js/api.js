@@ -76,6 +76,26 @@ api.get('/getMailconfig', function (req, res) {
 	new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
 });
 
+api.put('/updateMailconfig', function (req, res) {
+	var b = req.body;
+	var config = {mail_username:b.params.username, mail_password:b.params.password};
+	new mysql_2.MysqlHelpers().editMailconfig(new mysql_2.MysqlHelpers().initialize(), config).then(function (ret_val){
+		res.send({'status': 200, 'msg': 'success'});
+	});
+	new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
+	
+});
+
+api.post('/addMailconfig', function (req, res) {
+	var b = req.body;
+	var config = {mail_username:b.params.username, mail_password:b.params.password};
+	new mysql_2.MysqlHelpers().addMailconfig(new mysql_2.MysqlHelpers().initialize(), config).then(function (ret_val){
+		res.send({'status': 200, 'msg': 'success'});
+	});
+	new mysql_2.MysqlHelpers().close(new mysql_2.MysqlHelpers().initialize());
+
+});
+
 http.createServer(api).listen(api.get('port'), function () {
     console.log("Express server listening on port " + api.get('port'));
 });

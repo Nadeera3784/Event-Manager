@@ -354,4 +354,47 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 		console.log($scope.switchsetting);
 	});
 	
+	
+	$http.get('http://localhost:3000/getMailconfig').then(function successCallback(response) {
+		if(response.data.length > 0){
+			$.each(response.data, function(key, val){
+				$scope.username = new SanitizeHelper.SanitizeHelpers().decrypt(val.mail_username);
+				$scope.password = new SanitizeHelper.SanitizeHelpers().decrypt(val.mail_password);
+			 });
+			$scope.editBtn = true;
+		}else{
+			$scope.newBtn = true;
+		}
+
+	}, function errorCallback(response) {
+		console.log(response);
+	});
+	
+	$scope.editConfig = function (){
+		let username = new SanitizeHelper.SanitizeHelpers().encrypt($scope.username);
+		let password = new SanitizeHelper.SanitizeHelpers().encrypt($scope.password);
+		
+		$http.put('http://localhost:3000/updateMailconfig', {params: {username: username, password: password}}).then(function (httpResponse) {
+			if (httpResponse.data.status === 200) {
+				new NotificationHelper.NotificationHelpers().success('Congrats! Your Settings Was Updated Successfully!', 2);
+				angular.element('#about-modal').modal('hide');
+			}else{
+				new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+			}
+		});
+	}
+	
+	$scope.addConfig = function (){
+		let username = new SanitizeHelper.SanitizeHelpers().encrypt($scope.username);
+		let password = new SanitizeHelper.SanitizeHelpers().encrypt($scope.password);
+		
+		$http.post('http://localhost:3000/addMailconfig', {params: {username: username, password: password}}).then(function (httpResponse) {
+			if (httpResponse.data.status === 200) {
+				new NotificationHelper.NotificationHelpers().success('Congrats! Your Settings Was Configured Successfully!', 2);
+				angular.element('#about-modal').modal('hide');
+			}else{
+				new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
+			}
+		});
+	}
 });

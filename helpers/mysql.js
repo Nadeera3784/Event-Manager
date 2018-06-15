@@ -86,6 +86,25 @@ let MysqlHelpers = (function () {
 		});
 	};
 	
+	MysqlHelpers.prototype.editMailconfig  = function (connection, config) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.query('UPDATE `mail` SET mail_username = ?, mail_password= ?' ,[config.mail_username, config.mail_password], function(error, rows, fields){
+				if (error) reject(error);
+				resolve(rows);
+			});
+		});
+	}; 
+	
+	MysqlHelpers.prototype.addMailconfig = function (connection, config) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.query('INSERT INTO `mail` (mail_username, mail_password) VALUES (?, ?)' ,[config.mail_username, config.mail_password],  function(error, results, fields){
+				if (error) reject(error);
+				resolve(results);
+			});
+		});
+	}; 
     MysqlHelpers.prototype.close = function (connection) {
         connection.end();       
     };    

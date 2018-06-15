@@ -253,18 +253,19 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="tag" class="modal-label">Username </label>
-											<input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Username of your email account">
+											<input type="text" ng-model="username" class="form-control" data-toggle="tooltip" data-placement="top" title="Username of your email account">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="tag" class="modal-label">Password </label>
-											<input type="password" class="form-control" data-toggle="tooltip" data-placement="top" title="Password of your email account">
+											<input type="password" ng-model="password" class="form-control" data-toggle="tooltip" data-placement="top" title="Password of your email account">
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<button class="btn btn-sm btn-info btn-block"><i class="fa fa-save"></i> Save Changes</button>
+											<button class="btn btn-sm btn-info btn-block" ng-click="editConfig()" ng-if="editBtn"><i class="fa fa-save"></i> Save Changes</button>
+											<button class="btn btn-sm btn-info-outline btn-block" ng-click="addConfig()" ng-if="newBtn"><i class="fa fa-plus-circle"></i> Add</button>
 										</div>
 									</div>
 								</div>                                  
