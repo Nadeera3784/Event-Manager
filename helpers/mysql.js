@@ -66,6 +66,16 @@ let MysqlHelpers = (function () {
         });
     };
     
+	MysqlHelpers.prototype.getSwitch = function (connection) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.query('SELECT switch_state FROM `switch` LIMIT 1' , function(error, rows, fields){
+				if (error) reject(error);
+				resolve(rows);
+			});
+		});
+	};
+
     MysqlHelpers.prototype.close = function (connection) {
         connection.end();       
     };    
