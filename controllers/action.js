@@ -33,8 +33,9 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 					if(response.data.length > 0){
 						let subject = $itemScope.event.title;
 						let text = $itemScope.event.description;
-
-						new MailHelper.MailHelpers().send(value, subject, text).then(function (response){
+						let username = response.data[0]['mail_username'];
+						let password = response.data[0]['mail_password'];
+						new MailHelper.MailHelpers().send(value, subject, text, username,  password).then(function (response){
 							new NotificationHelper.NotificationHelpers().success(response , 2);
 						});
 					}else{
