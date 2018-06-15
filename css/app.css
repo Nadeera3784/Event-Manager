@@ -484,7 +484,7 @@ fieldset[disabled] .btn-danger.active {
 #nav .nav-drop {
     position: fixed;
     overflow: hidden;
-    overflow-y: auto;
+/*    overflow-y: auto;*/
     left: 0;
     top: 80px;
     bottom: 0;
