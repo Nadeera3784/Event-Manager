@@ -22,7 +22,7 @@ if (shouldQuit) {
 
 app.on('ready', function(){
     	
-    windowFactory(800, 850);
+    windowFactory(800, 810);
     
     generateTray();
     
