@@ -21,6 +21,13 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
     $scope.addModal = function(){
         angular.element('#new-modal').modal('show');
     }
+	
+	function resetForm(modalSelector, formSelector){
+		$(modalSelector).on('hidden.bs.modal', function (e) {
+			$(formSelector).find('input[type=text], textarea').val('');
+			$(formSelector)[0].reset();
+		});
+	}
     
 	$scope.menuOptions = [
 		['<i class="fa fa-trash"></i> &nbsp;&nbsp; Delete', function ($itemScope) {
@@ -37,7 +44,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 						let username = response.data[0]['mail_username'];
 						let password = response.data[0]['mail_password'];
 						new MailHelper.MailHelpers().send(value, subject, text, username,  password).then(function (response){
-							new NotificationHelper.NotificationHelpers().success(response , 2);
+							new NotificationHelper.NotificationHelpers().success('Your event has been sent successfully.' , 2);
 						});
 					}else{
 						new NotificationHelper.NotificationHelpers().warning('config not found', 2);
@@ -113,6 +120,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     $('#calendar').fullCalendar("refetchEvents");
                     new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
 					$("#EventForm")[0].reset();
+					resetForm('#new-modal', '#EventForm');
                     angular.element('#new-modal').modal('hide');
                 }else{
                     new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
@@ -196,8 +204,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                     center: 'prev title next',
                     right: 'month,basicWeek,basicDay'                
                 },
-                titleRangeSeparator: "-",
-				//firstDay: 0, 
+                titleRangeSeparator: "-", 
                 buttonText: {
                 prev: "" ,
                 next: "",
