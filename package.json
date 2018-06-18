@@ -1,7 +1,7 @@
 {
-  "name": "event_manager",
-  "version": "1.0.1",
-  "description": "event_manager",
+  "name": "EventMenager",
+  "version": "1.0.3",
+	"description": "EventMenager",
   "main": "index.js",
   "scripts": {
 	  "package": "node ./build.js"
@@ -9,7 +9,7 @@
   "keywords": [
     "electron"
   ],
-  "author": "enuser",
+  "author": "R.Nadeera Sampath",
   "license": "MIT"
 	
 }
