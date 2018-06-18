@@ -65,7 +65,7 @@
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.title.$invalid && !EventForm.title.$pristine }">
                                     <label for="title" class="modal-label">Title </label>
                                     <input type="text" ng-model="title" name="title" class="form-control" id="title" ng-minlength="2" ng-maxlength="12"
-										   ng-pattern="/^[a-z-0-9][a-z0-9_ \./>]{0,24}$/i"  context-menu="otherMenuOptions" context-menu-on="contextmenu"  required>
+										   ng-pattern="/^[a-z-0-9][a-z0-9_ \./>]{0,24}$/i"  context-menu="titleMenuOptions" context-menu-on="contextmenu"  required>
                                     <p ng-show="EventForm.title.$dirty && EventForm.title.$error.required" class="help-block">Title is required</p>
                                     <p ng-show="EventForm.title.$error.minlength" class="help-block">Must have minimum 2 characters</p>
                                     <p ng-show="EventForm.title.$error.maxlength" class="help-block">Maximum number of characters exceeded</p>
@@ -75,7 +75,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group" ng-class="{ 'has-error' : EventForm.description.$invalid && !EventForm.description.$pristine }">
                                     <label for="description" class="modal-label">Description </label>
-									<textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.,/>]{0,100}$/i"  required></textarea>
+									<textarea class="form-control" name="description" id="description" ng-model="description" rows="3" ng-minlength="5" ng-pattern="/^[a-z-0-9][a-z0-9_ \.,/>]{0,100}$/i" context-menu="descriptionMenuOptions" context-menu-on="contextmenu"  required></textarea>
                                     <p ng-show="EventForm.description.$dirty && EventForm.description.$error.required" class="help-block">Description is required</p>
                                     <p ng-show="EventForm.description.$error.minlength" class="help-block">Must have minimum 5 characters</p>
                                     <p ng-show="EventForm.description.$error.pattern" class="help-block">Is not allowed (A-Z, a-z, 0-9 only)</p>   
@@ -284,7 +284,6 @@
         <script src="js/moment.min.js"></script>
         <script src="js/fullcalendar.min.js"></script>
         <script src="js/datetimepicker.js"></script>
-		<script src="js/clipboard.js"></script>
 		<script src="js/jquery.nicescroll.min.js"></script>
         <script src="js/angular.js"></script>
         <script src="controllers/base.js"></script>

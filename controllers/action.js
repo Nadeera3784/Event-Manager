@@ -1,3 +1,4 @@
+const clipboard = require('electron').clipboard;
 app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) {
     
     $scope.optionlist = [
@@ -50,12 +51,22 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	];
 	
 
-	$scope.otherMenuOptions = [
+	$scope.titleMenuOptions = [
 		['Copy', function ($itemScope, event, modelValue, text, $li) {
 			let copied_text = $itemScope.title;
+			clipboard.writeText(copied_text);
 		}],
 		['Paste', function ($itemScope, event, modelValue, text, $li) {
-
+			$scope.title = clipboard.readText();
+		}]
+	];
+	$scope.descriptionMenuOptions = [
+		['Copy', function ($itemScope, event, modelValue, text, $li) {
+			let copied_text = $itemScope.description;
+			clipboard.writeText(copied_text);
+		}],
+		['Paste', function ($itemScope, event, modelValue, text, $li) {
+			$scope.description = clipboard.readText();
 		}]
 	];
 	
