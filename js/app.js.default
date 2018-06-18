@@ -1,0 +1,128 @@
+const {remote} = require('electron');
+
+window.$ = window.jQuery = require('./js/jquery.js');
+
+
+$(document).ready(function() {
+    $('#min-btn').click(function(e) {
+        let window = remote.getCurrentWindow();
+        window.minimize();
+    });
+});
+
+$(document).ready(function() {
+    $('#max-btn').click(function(e) {
+        let window = remote.getCurrentWindow();
+        if (!window.isMaximized()) {
+            window.maximize();
+        } else {
+            window.unmaximize();
+        }
+    });
+});
+
+$(document).ready(function() {
+    $('#close-btn').click(function(e) {
+        let window = remote.getCurrentWindow();
+        window.close();
+    });
+});
+
+$(document).ready(function() {
+    let date = new Date();
+    let d = date.getDate();
+    let m = date.getMonth();
+    let y = date.getFullYear();
+    $('#calendar').fullCalendar({
+			header: {
+				left: 'today',
+				center: 'prev title next',
+				right: 'month,basicWeek,basicDay'
+			},
+            buttonText: {
+			prev: "",
+			next: "",
+			today: 'Today',
+			month: 'Month',
+			week: 'Week',
+			day: 'Day'
+		},
+			defaultDate: new Date(y, m, d),
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			selectable: true,
+			selectHelper: true,
+            events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false,
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					className: 'success'
+				}
+			]
+    });
+
+});
+
+
+$(document).ready(function() {
+    $('.drawer-toggler, .drawer-close, .drawer-backdrop').click(function(e) {
+        $("body").toggleClass("drawer-open");
+    });
+});
+
+$(document).ready(function() {
+    $('.delete-event').click(function(e) {
+                notie.confirm({
+          text: 'Warning!<br>Are you sure you want to delete this event?</b>',
+          cancelCallback: function () {
+            notie.alert({ type: 3, text: 'Aw, why not? :(', time: 2 })
+          },
+          submitCallback: function () {
+            notie.alert({ type: 1, text: 'The selected event has been successfully deleted!', time: 2 })
+          }
+        })
+    });
+});
+
+
+$(document).ready(function($) {
+
+});

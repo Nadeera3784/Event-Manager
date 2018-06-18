@@ -1,0 +1,15 @@
+{
+  "name": "event_manager",
+  "version": "1.0.1",
+  "description": "event_manager",
+  "main": "index.js",
+  "scripts": {
+	  "package": "node ./build.js"
+  },
+  "keywords": [
+    "electron"
+  ],
+  "author": "enuser",
+  "license": "MIT"
+	
+}
