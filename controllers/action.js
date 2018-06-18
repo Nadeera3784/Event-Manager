@@ -112,7 +112,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                 if (httpResponse.data.status === 200) {
                     $('#calendar').fullCalendar("refetchEvents");
                     new NotificationHelper.NotificationHelpers().success('Congrats! Your New Event Was Created Successfully!', 2);
-                    angular.element("#EventForm")[0].reset();
+					$("#EventForm")[0].reset();
                     angular.element('#new-modal').modal('hide');
                 }else{
                     new NotificationHelper.NotificationHelpers().error('Something went wrong when trying to create your event', 2);
