@@ -35,7 +35,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 		}],
 		['<i class="fa fa-send"></i> &nbsp;&nbsp; Send', function ($itemScope) {
 			new NotificationHelper.NotificationHelpers().input(function(value){
-				new NotificationHelper.NotificationHelpers().error('Event Could Be Sent', 2);
+				new NotificationHelper.NotificationHelpers().error('Aw, why not?', 2);
 			}, function (value){
 				$http.get('http://localhost:3000/getMailconfig').then(function successCallback(response) {
 					if(response.data.length > 0){
@@ -47,7 +47,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 							new NotificationHelper.NotificationHelpers().success('Your event has been sent successfully.' , 2);
 						});
 					}else{
-						new NotificationHelper.NotificationHelpers().warning('config not found', 2);
+						new NotificationHelper.NotificationHelpers().warning('Unable to send event! <br> Please configure your email settings', 2);
 					}
 
 				}, function errorCallback(response) {
@@ -348,30 +348,11 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         return false;
     }
 	
-	//$("#calendar").fullCalendar('option', 'firstDay', 1);
-
 /*    $('.fc-next-button, .fc-prev-button').on('click',function(){
         var view = $('#calendar').fullCalendar('getView');
         console.log(view.title);
     });*/
-	
-	$http.get('http://localhost:3000/getSwitch').then(function successCallback(response) {
-		if(response.data[0].switch_state != 0){
-			$scope.switchsetting = true;
-			$('#calendar').fullCalendar('option', 'firstDay', 1);
-		}else{
-			$scope.switchsetting = false;
-			$('#calendar').fullCalendar('option', 'firstDay', 0);
-		}
-
-	}, function errorCallback(response) {
-		console.log(response);
-	});
-	
-	$scope.$watch('switchsetting', function(newNames, oldNames) {
-		//console.log($scope.switchsetting);
-	});
-	
+		
 	
 	$http.get('http://localhost:3000/getMailconfig').then(function successCallback(response) {
 		if(response.data.length > 0){
