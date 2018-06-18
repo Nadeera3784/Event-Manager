@@ -1,22 +1,22 @@
 'use strict';
 var packager        = require('electron-packager');
-var electronPackage = require('electron/package.json');
-var electronVersion = electronPackage.version;
+//var electronPackage = require('electron/package.json');
+//var electronVersion = electronPackage.version;
 var pkg             = require('./package.json');
 var options = {
-	'arch'         : 'ia32',
+	'arch'         : 'x64',
 	'platform'     : 'win32',
 	'dir'          : './',
 	'app-copyright': pkg.author,
 	'app-version'  : pkg.version,
-	'asar'         : {unpackDir: config.excludeFromASAR},
-	'icon'         : './app.ico',
+	'asar'         : true,
+	//'icon'         : './app.ico',
 	'name'         : pkg.name,
 	'out'          : './releases',
 	'overwrite'    : true,
 	'prune'        : true,
 	'version'      : pkg.version,
-	'electronVersion': electronVersion,
+	'electronVersion': '1.7.8',
 	'version-string': {
 		'CompanyName'     : pkg.author,
 		'FileDescription' : pkg.description,
