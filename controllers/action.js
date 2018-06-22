@@ -170,7 +170,7 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
             new NotificationHelper.NotificationHelpers().warning('Ouch! Please enter a  description', 2);
             valid = false;
         }else if(description != description.match(/^[a-z-0-9][a-z0-9_\ ./,>]{4,100}$/i)){
-            new NotificationHelper.NotificationHelpers().warning('Ouch! Must have minimum 5 characters', 2);
+			new NotificationHelper.NotificationHelpers().warning('Ouch! Maximum number of characters exceeded', 2);
             valid = false;
         }
         if(className == '' || className == null){
@@ -226,8 +226,8 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                 events: {
                     url: 'http://localhost:3000/getEvents',
                     type: 'GET',
-                    error: function() {
-                        console.log('Error!- This request could not be completed');
+                    error: function(err) {
+						console.log('Error!- This request could not be completed' + err);
                     },
                     success: function(response) {
                         $scope.drawerEvents = response;
@@ -348,12 +348,6 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
         return false;
     }
 	
-/*    $('.fc-next-button, .fc-prev-button').on('click',function(){
-        var view = $('#calendar').fullCalendar('getView');
-        console.log(view.title);
-    });*/
-		
-	
 	$http.get('http://localhost:3000/getMailconfig').then(function successCallback(response) {
 		if(response.data.length > 0){
 			$.each(response.data, function(key, val){
@@ -368,7 +362,6 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
 	}, function errorCallback(response) {
 		console.log(response);
 	});
-	
 	$scope.editConfig = function (){
 		let username = new SanitizeHelper.SanitizeHelpers().encrypt($scope.username);
 		let password = new SanitizeHelper.SanitizeHelpers().encrypt($scope.password);

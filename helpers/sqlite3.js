@@ -16,9 +16,11 @@ let Sqlite3Helpers = (function () {
 	Sqlite3Helpers.prototype.getEvents = function (connection) {
 		return new Promise(function(resolve, reject) {
 			if(!connection) reject();
-			connection.run('SELECT id,title,description,start,end,className  FROM `events` ORDER BY id' , function(err, rows){
-				if (err) reject(err);
-				resolve(rows);
+			connection.serialize(function(){
+				connection.all('SELECT id,title,description,start,end,className  FROM `events` ORDER BY id', function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
 			});
 		});
 	};
@@ -26,9 +28,11 @@ let Sqlite3Helpers = (function () {
 	Sqlite3Helpers.prototype.addEvents = function (connection, event) {
 		return new Promise(function(resolve, reject) {
 			if(!connection) reject();
-			connection.run('INSERT INTO `events` (title, description, start, end, className) VALUES (?, ?, ?, ?, ?)' ,[event.title, event.description, event.start, event.end, event.className],  function(err, results){
-				if (err) reject(err);
-				resolve(results);
+			connection.serialize(function(){
+				connection.run('INSERT INTO `events` (title, description, start, end, className) VALUES (?, ?, ?, ?, ?)' ,[event.title, event.description, event.start, event.end, event.className],  function(err, results){
+					if (err) reject(err);
+					resolve(results);
+				});
 			});
 		});
 	}; 
@@ -36,9 +40,11 @@ let Sqlite3Helpers = (function () {
 	Sqlite3Helpers.prototype.updateEvent = function (connection, event) {
 		return new Promise(function(resolve, reject) {
 			if(!connection) reject();
-			connection.query('UPDATE `events` SET title = ?, description= ?, start = ?, end = ?, className = ? WHERE id = ? ' ,[event.title, event.description, event.start, event.end, event.className, event.id], function(err, rows){
-				if (err) reject(err);
-				resolve(rows);
+			connection.serialize(function(){
+				connection.run('UPDATE `events` SET title = ?, description= ?, start = ?, end = ?, className = ? WHERE id = ? ' ,[event.title, event.description, event.start, event.end, event.className.toString(), event.id], function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
 			});
 		});
 	}; 
@@ -46,13 +52,51 @@ let Sqlite3Helpers = (function () {
 	Sqlite3Helpers.prototype.deleteEvent = function (connection, id) {
 		return new Promise(function(resolve, reject) {
 			if(!connection) reject();
-			connection.query('DELETE FROM `events` WHERE  id=' + id , function(err, rows){
-				if (err) reject(err);
-				resolve(rows);
+			connection.serialize(function(){
+				connection.run('DELETE FROM `events` WHERE  id=' + id , function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
 			});
 		});
 	};
 
+	Sqlite3Helpers.prototype.getMailconfig = function (connection) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.serialize(function(){
+				connection.all('SELECT mail_username,mail_password  FROM `mail` LIMIT 1', function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
+			});
+		});
+	};
+	
+	Sqlite3Helpers.prototype.updateMailconfig = function (connection, config) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.serialize(function(){
+				connection.run('UPDATE `mail` SET mail_username = ?, mail_password= ?', [config.mail_username, config.mail_password], function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
+			});
+		});
+	};
+	
+	Sqlite3Helpers.prototype.addMailconfig = function (connection, config) {
+		return new Promise(function(resolve, reject) {
+			if(!connection) reject();
+			connection.serialize(function(){
+				connection.run('INSERT INTO `mail` (mail_username, mail_password) VALUES (?, ?)', [config.mail_username, config.mail_password], function(err, rows){
+					if (err) reject(err);
+					resolve(rows);
+				});
+			});
+		});
+	};
+	
 	Sqlite3Helpers.prototype.close = function (connection) {
 		connection.close();       
 	};    

@@ -941,5 +941,13 @@ body.modal {
 	float: left;
 }
 .notification {
-	left: -55px;
+	left: -42px;
+}
+a #green-dot::before{
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #28ca6e;
+	margin: 0 10px 1px 0;
 }
