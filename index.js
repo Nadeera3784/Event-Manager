@@ -4,9 +4,9 @@ const path = require("path");
 const {app,  BrowserWindow, Tray, Menu} = electron;
 let mainWindow = null;
 
-let logo = path.join(__dirname, 'images', 'logo.png');
+let logo = path.join(__dirname, 'images', 'logo.ico');
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 
 const shouldQuit = app.makeSingleInstance(function(){
 	if(mainWindow) {
