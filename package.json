@@ -4,7 +4,8 @@
 	"description": "EventMenager",
   "main": "index.js",
   "scripts": {
-	  "package": "node ./build.js"
+	  "package": "node ./build.js",
+	  "rebuild" : "electron-rebuild -f -w sqlite3"
   },
   "keywords": [
     "electron"

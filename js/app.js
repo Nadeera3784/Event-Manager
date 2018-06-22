@@ -38,7 +38,6 @@ $(document).ready(function() {
 		zindex: 999
 	});
 	
-	//$("select:not(.ms)").selectpicker();
 });
 
 $(document).ready(function() {
