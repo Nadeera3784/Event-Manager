@@ -1,23 +1,23 @@
 {
-  "name": "event_manager",
-  "version": "1.0.4",
-  "description": "Event Management Application",
-  "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "nodemailer": "^4.6.6",
-    "sqlite3": "^4.0.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "package": "node ./build.js",
-    "rebuild" : "electron-rebuild -f -w sqlite3"
-  },
-  "keywords": [
-    "Electron",
-    "Angular"
-  ],
-  "author": "R.Nadeera Sampath",
-  "license": "MIT"
+    "name": "event_manager",
+    "version": "1.0.4",
+    "description": "Event Management Application",
+    "main": "index.js",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "nodemailer": "^4.6.6",
+        "sqlite3": "^4.0.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "package": "node ./build.js",
+        "rebuild": "electron-rebuild -f -w sqlite3"
+    },
+    "keywords": [
+        "Electron",
+        "Angular"
+    ],
+    "author": "R.Nadeera Sampath",
+    "license": "MIT"
 }
