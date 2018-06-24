@@ -1,6 +1,7 @@
 const electron = require("electron");
 const url = require("url");
 const path = require("path");
+//require(__dirname "/js/api.js");
 const {app,  BrowserWindow, Tray, Menu} = electron;
 let mainWindow = null;
 
