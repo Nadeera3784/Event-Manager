@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 let sqlite3 = require('sqlite3');
 const path = require('path');
+//const app = require('electron');
 
 let Sqlite3Helpers = (function () {
 	function Sqlite3Helpers() {
@@ -10,6 +11,8 @@ let Sqlite3Helpers = (function () {
 	Sqlite3Helpers.prototype.initialize = function (dbname) {
 		const db_pth = path.join(__dirname, '..', 'database', dbname);
 		const db = new sqlite3.Database(db_pth);
+		db.run("CREATE TABLE IF NOT EXISTS `events` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `title` char ( 20 ) NOT NULL, `description` char ( 100 ) NOT NULL, `start` char ( 50 ) NOT NULL, `end` char ( 50 ) NOT NULL, `className` char(100) NOT NULL )");
+		db.run("CREATE TABLE IF NOT EXISTS `mail` ( `mail_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `mail_username` TEXT NOT NULL, `mail_password` TEXT NOT NULL )");
 		return db;
 	};
 	
