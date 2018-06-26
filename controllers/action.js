@@ -255,6 +255,10 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                         }
                         angular.element('#edit-modal').modal('show');
                     });
+		   let i = document.createElement('i');
+		   i.className = 'fa fa-check';
+		   i.classList.add(event.icon);
+		   element.find('div.fc-content').prepend(i);	
                 },
                 eventDrop: function(event, delta, revertFunc) {
                     editCalendar(event);
