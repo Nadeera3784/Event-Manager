@@ -255,6 +255,10 @@ app.controller('action', function($scope, $rootScope, $http, ContextMenuEvents) 
                         }
                         angular.element('#edit-modal').modal('show');
                     });
+					var i = document.createElement('i');
+					i.className = 'fa fa-check'; /*'ace-icon fa yellow bigger-250 '*/
+					i.classList.add(event.icon);
+					element.find('div.fc-content').prepend(i);
                 },
                 eventDrop: function(event, delta, revertFunc) {
                     editCalendar(event);
